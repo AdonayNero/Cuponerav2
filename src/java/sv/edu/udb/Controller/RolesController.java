@@ -43,13 +43,19 @@ public class RolesController {
     }
     
     public String getById(Roles r){
-        roles = rolesFacade.find(r);
+        roles = rolesFacade.find(r.getIdRoles());
         return "UpdateRol";
     }
     public String update(){
         rolesFacade.edit(roles);
         roles = new Roles();
         return "GetRol";
+    }
+    
+    public void delete(Roles r){
+        rolesFacade.remove(r);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminada", "Rol Eliminado");
+        FacesContext.getCurrentInstance().addMessage(null,message);
     }
 
     public Roles getRoles() {

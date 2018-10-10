@@ -59,9 +59,9 @@
             <b:dataTableColumn value="#{usuario.tipoAcceso.nombre}" label="Tipo de Acceso" />
             <b:dataTableColumn label="Operaciones">
                 <center>
-                <b:commandButton value="Update" class="btn-success"></b:commandButton>
+                    <b:commandButton value="Update" action="#{usuarioController.findById(usuario)}" class="btn-success"></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" class="btn-danger" action="#{usuarioController.delete(usuario)}" onclick="return confirm('Desea eliminar este rol')"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             

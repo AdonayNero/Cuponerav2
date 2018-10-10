@@ -53,9 +53,9 @@
             <b:dataTableColumn value="#{roles.descripcion}" label="Descripción" />
             <b:dataTableColumn label="Operaciones">
                 <center>
-                <b:commandButton value="Update" class="btn-success"></b:commandButton>
+                    <b:commandButton value="Update" class="btn-success" action="#{rolesController.getById(roles)}" ></b:commandButton>
                 -
-                <b:commandButton value="Delete" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" class="btn-danger" action="#{rolesController.delete(roles)}" onclick="return confirm('Desea eliminar este rol')"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             

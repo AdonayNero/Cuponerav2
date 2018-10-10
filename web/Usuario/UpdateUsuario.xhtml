@@ -30,33 +30,22 @@
           
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
-                  
+                  <h:inputHidden value="#{usuarioController.usuario.codUsuario}"/>  
                 <p:outputLabel for="nombre" value="Nombre:"/>
-                <p:inputText id="nombre" value="" required="true" requiredMessage="Por favor ingrese un usuario">
+                <p:inputText id="nombre" value="#{usuarioController.usuario.nombre}" required="true" requiredMessage="Por favor ingrese un usuario">
                 </p:inputText>
                 
                 <p:outputLabel for="dui" value="DUI:"/>
-                <p:inputText id="dui" value="" required="true" requiredMessage="Por favor ingrese un dui">
+                <p:inputText id="dui" value="#{usuarioController.usuario.dui}" required="true" requiredMessage="Por favor ingrese un dui">
                 </p:inputText>
                 
                 <p:outputLabel for="telefono" value="Teléfono:"/>
-                <p:inputText id="telefono" value="" required="true" requiredMessage="Por favor ingrese un teléfono">
+                <p:inputText id="telefono" value="#{usuarioController.usuario.telefono}" required="true" requiredMessage="Por favor ingrese un teléfono">
                 </p:inputText>
                 
                 <p:outputLabel for="email" value="Email:"/>
-                <p:inputText id="email" value="" required="true" requiredMessage="Por favor ingrese un email">
+                <p:inputText id="email" value="#{usuarioController.usuario.email}" required="true" requiredMessage="Por favor ingrese un email">
                 </p:inputText>
-                
-                <p:outputLabel for="password" value="Contraseña:"/>
-                <p:inputText id="password" value="" required="true" requiredMessage="Por favor ingrese una contraseña">
-                </p:inputText>
-                
-                <p:outputLabel for="estado" value="Estado:"/>
-                <p:selectOneMenu id="estado" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="Activo" itemValue="activo" />
-                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </p:selectOneMenu>
                 
                 <p:outputLabel for="tipoAcceso" value="Tipo de Acceso:"/>
                 <p:selectOneMenu id="tipoAcceso" style="width:227px">
@@ -77,7 +66,7 @@
               </f:facet>
                   
               <f:facet name="right">
-              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+                  <p:commandButton value="Restablecer" action="#{usuarioController.update()}" class="btn-success" style="margin-right:300px;" >
                     <p:ajax update="panel" resetValues="true" />
               </p:commandButton>
               </f:facet>
