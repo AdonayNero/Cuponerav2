@@ -32,18 +32,18 @@
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
                 <p:outputLabel for="nombre" value="Nombre:"/>
-                <p:inputText id="nombre" value="" required="true" requiredMessage="Por favor ingrese un rol">
+                <p:inputText id="nombre" value="#{rolesController.roles.nombre}" required="true" requiredMessage="Por favor ingrese un rol">
                 </p:inputText>
                 
                 <p:outputLabel for="descripcion" value="Descripción:" />
-                <p:inputTextarea rows="5" cols="50" id="descripcion" value="" required="true" requiredMessage="Por favor ingrese una descripción">
+                <p:inputTextarea rows="5" cols="50" id="descripcion" value="#{rolesController.roles.descripcion}" required="true" requiredMessage="Por favor ingrese una descripción">
                 </p:inputTextarea>  
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-              <p:commandButton value="Guardar" class="btn-primary">
+                      <p:commandButton value="Guardar" class="btn-primary" action="#{rolesController.create()}">
               </p:commandButton>
               </f:facet>
                   

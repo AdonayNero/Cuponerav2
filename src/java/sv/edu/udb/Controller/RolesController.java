@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Facade.RolesFacade;
 import sv.edu.udb.Model.Roles;
 
@@ -27,9 +29,27 @@ public class RolesController {
         roles = new Roles();
     }
     
+    public String create(){
+        rolesFacade.create(roles);
+        roles = new Roles();
+        
+        return "GetRol";
+    }
+    
     // Metodo para listar Empresa
     public List<Roles> getRolesList() {
         return rolesFacade.findAll();
+        
+    }
+    
+    public String getById(Roles r){
+        roles = rolesFacade.find(r);
+        return "UpdateRol";
+    }
+    public String update(){
+        rolesFacade.edit(roles);
+        roles = new Roles();
+        return "GetRol";
     }
 
     public Roles getRoles() {
@@ -39,6 +59,8 @@ public class RolesController {
     public void setRoles(Roles roles) {
         this.roles = roles;
     }
+    
+    
     
     
     
