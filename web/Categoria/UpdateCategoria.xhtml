@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="../WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+        
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Editar Categoría
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="../Index.xhtml">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Modificar Categoría</li>
+      </ol>
+
+      <!--  Formulario Categoria -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Categoría</h3>
+            
+            <hr></hr>
+          
+          <h:form id="contactForm">
+              <h:panelGrid columns="2" cellpadding="5" id="panel">
+                
+                <h:outputLabel for="id" value="ID:"/>
+                <b:inputText id="id" value="#{categoriaController.categoria.idCategoria}" required="true" requiredMessage="Por favor ingrese una categoría">
+                </b:inputText>  
+                  
+                <h:outputLabel for="nombre" value="Nombre:"/>
+                <b:inputText id="nombre" value="#{categoriaController.categoria.nombre}" required="true" requiredMessage="Por favor ingrese una categoría">
+                </b:inputText>
+                
+                <h:outputLabel for="descripcion" value="Descripción:" />
+                <p:inputTextarea rows="5" cols="50" id="descripcion" value="#{categoriaController.categoria.descripcion}" required="true" requiredMessage="Por favor ingrese una descripción">
+                </p:inputTextarea>  
+                  
+              </h:panelGrid>
+        
+              <p:toolbar style="background-color: white; border: none;">
+                  <f:facet name="left">
+                      <b:commandButton value="Guardar Cambios" action="#{categoriaController.modificarCategoria()}" class="btn-primary">
+              </b:commandButton>
+              </f:facet>
+                  
+              <f:facet name="right">
+              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:200px;" >
+                    <p:ajax update="panel" resetValues="true" />
+              </b:commandButton>
+              </f:facet>
+              </p:toolbar>
+          </h:form>
+        </div>
+
+      </div>
+      <!-- /.row -->
+        
+    </ui:define>
+
+</ui:composition>
+

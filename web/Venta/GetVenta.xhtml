@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="../WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+              <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Venta
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="../Index.xhtml">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Venta</li>
+      </ol>
+
+      <!--  Formulario Categoria -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Venta</h3>
+            
+            <hr></hr>       
+            
+            <p:commandButton value="Nueva Venta" class="btn btn-primary" style="width: 175px;">
+            </p:commandButton>
+    
+        </div>    
+            
+        </div>
+    <!-- /.row -->
+    
+    <br/>
+    
+    <h:form id="form">  
+        <b:dataTable value="#{ventaController.ventaList}" var="venta" excel="true"
+                    csv="true"
+                    pdf="true"
+                    columnVisibility="true"
+                    copy="true"
+                    print="true"
+                    style="width: 100%; margin:0 auto;"
+                    >
+       
+            <b:dataTableColumn value="#{venta.codCupon}" label="Código" />
+            <b:dataTableColumn value="#{venta.codCliente}" label="Cliente" />
+            <b:dataTableColumn value="#{venta.idDetalle.idDetalle}" label="Detalle Oferta" />
+            <b:dataTableColumn value="#{venta.fechaVenta}" label="Fecha de Venta" />
+            <b:dataTableColumn value="#{venta.formaPago}" label="Forma de Pago" />
+            <b:dataTableColumn value="#{venta.estado}" label="Estado" />
+            <b:dataTableColumn label="Operaciones">
+                <center>
+                <b:commandButton value="Update" class="btn-success"></b:commandButton>
+                <br/><br/>
+                <b:commandButton value="Delete" class="btn-danger"></b:commandButton>
+                </center>
+            </b:dataTableColumn>
+            
+       </b:dataTable>     
+            </h:form>
+    
+    </ui:define>
+
+</ui:composition>

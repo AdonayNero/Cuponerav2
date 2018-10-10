@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="./WEB-INF/Plantilla.xhtml">
+    <ui:define name="contenido">
+        
+        <h1 class="mt-4 mb-3">Bienvenidos
+        <small>:D</small>
+      </h1>
+
+        <div class="row" >
+        <div class="col-lg-8 mb-4">
+            <b:carousel id="parque" style="width:400px; margin-left: 200px;" >
+            <b:carouselItem>
+                <img src="resources/Cuponera1.JPG" alt="Cuponera" />
+            </b:carouselItem>
+            <b:carouselItem>
+                <img src="resources/Cuponera2.JPG" alt="Cuponera" />
+            </b:carouselItem>
+            <b:carouselItem>
+                <img src="resources/Cuponera3.JPG" alt="Cuponera" />
+            </b:carouselItem>
+            <b:carouselItem>
+                <img src="resources/Cuponera4.JPG" alt="Cuponera" />
+            </b:carouselItem>
+            <b:carouselItem>
+                <img src="resources/Cuponera5.jpg" alt="Cuponera" />
+            </b:carouselItem>
+        </b:carousel>
+            
+        </div>
+        </div>
+        
+        <br/>
+        <br/>
+        
+    <b:panel>
+  
+        <f:facet name="heading">
+            <i class="fa fa-bell" style="padding-right:20px" />
+            <h:outputText value="Ofertas de cupones " />
+            <b:badge style="margin-left:10px; background-color:#5cb85c" value="Cupones"  />
+        </f:facet>
+  
+        <b:row>
+            <b:column col-sm="6" col-md="4">
+            <b:thumbnail>
+                <img src="http://bk-emea-prd.s3.amazonaws.com/sites/burgerking.es/files/Aprovechate-web_32.jpg" alt="Generic placeholder thumbnail"/>
+            <f:facet name="caption">
+                <h3>Thumbnail label</h3>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>
+                <b:button look="primary" value="Button"/>
+                <b:button value="Button"/>
+                </p>
+            </f:facet>
+            </b:thumbnail>
+            </b:column>
+            
+            <b:column col-sm="6" col-md="4">
+            <b:thumbnail>
+                <img src="http://bk-emea-prd.s3.amazonaws.com/sites/burgerking.es/files/Aprovechate-web_32.jpg" alt="Generic placeholder thumbnail"/>
+            <f:facet name="caption">
+                <h3>Thumbnail label</h3>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>
+                <b:button look="primary" value="Button"/>
+                <b:button value="Button"/>
+                </p>
+            </f:facet>
+            </b:thumbnail>
+            </b:column>
+       
+            <b:column col-sm="6" col-md="4">
+            <b:thumbnail>
+                <img src="http://bk-emea-prd.s3.amazonaws.com/sites/burgerking.es/files/Aprovechate-web_32.jpg" alt="Generic placeholder thumbnail"/>
+            <f:facet name="caption">
+                <h3>Thumbnail label</h3>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>
+                <b:button look="primary" value="Button"/>
+                <b:button value="Button"/>
+                </p>
+            </f:facet>
+            </b:thumbnail> 
+            </b:column>
+
+        </b:row>
+    </b:panel>
+
+    </ui:define>
+
+</ui:composition>

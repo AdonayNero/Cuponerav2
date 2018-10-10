@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="../WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+        
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Nueva Empresa
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="../Index.xhtml">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Agregar Empresa</li>
+      </ol>
+
+      <!--  Formulario Categoria -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Empresa</h3>
+            
+            <hr></hr>
+          
+          <h:form id="contactForm">
+              <h:panelGrid columns="2" cellpadding="5" id="panel">
+                  
+                <p:outputLabel for="nombre" value="Nombre:"/>
+                <p:inputText id="nombre" value="" required="true" requiredMessage="Por favor ingrese una empresa">
+                </p:inputText>
+                
+                <p:outputLabel for="encargado" value="Encargado:"/>
+                <p:inputText id="encargado" value="" required="true" requiredMessage="Por favor ingrese un encargado">
+                </p:inputText>
+                
+                <p:outputLabel for="nitEmpleado" value="NIT de Empleado"/>
+                <p:inputText id="nitEmpleado" value="" required="true" requiredMessage="Por favor ingrese el nit del empleado">
+                </p:inputText>
+                
+                <p:outputLabel for="porcentaje" value="Porcentaje:"/>
+                <p:inputText id="porcentaje" value="" required="true" requiredMessage="Por favor ingrese un porcentaje">
+                </p:inputText>
+                
+                <p:outputLabel for="estado" value="Estado:"/>
+                <p:selectOneMenu id="estado" style="width:227px">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItem itemLabel="Activo" itemValue="activo" />
+                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="observacion" value="Observación:" />
+                <p:inputTextarea rows="5" cols="50" id="observacion" value="" required="true" requiredMessage="Por favor ingrese una observación">
+                </p:inputTextarea>  
+                  
+              </h:panelGrid>
+        
+              <p:toolbar style="background-color: white; border: none;">
+                  <f:facet name="left">
+              <p:commandButton value="Guardar" class="btn-primary">
+              </p:commandButton>
+              </f:facet>
+                  
+              <f:facet name="right">
+              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+                    <p:ajax update="panel" resetValues="true" />
+              </p:commandButton>
+              </f:facet>
+              </p:toolbar>
+          </h:form>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="../WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+        
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Categoría
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <p:link href="../Index.xhtml">Inicio</p:link>>
+        </li>
+        <li class="breadcrumb-item active">Categoría</li>
+      </ol>
+
+      <!--  Formulario Categoria -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Categoría</h3>
+            
+            <hr></hr>       
+            <h:form>
+            <p:commandLink value="Nueva Categoría" action="AddCategoria.xhtml"  class="btn btn-primary" style="width: 175px;">
+            </p:commandLink>
+            </h:form>
+        </div>    
+      </div>
+    <!-- /.row -->
+    
+    <br/>
+    
+    <h:form id="form">
+        <b:dataTable value="#{categoriaController.categoriaList}" var="categoria" excel="true"
+                    csv="true"
+                    pdf="true"
+                    columnVisibility="true"
+                    copy="true"
+                    print="true"
+                    style="width: 75%; margin:0 auto;"
+                    responsive="true"
+                    >
+       
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{categoria.idCategoria}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Nombre" />
+            </f:facet>
+                <h:outputText value="#{categoria.nombre}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Descripción" />
+            </f:facet>
+                <h:outputText value="#{categoria.descripcion}" />
+        </h:column>    
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Operaciones" />
+            </f:facet>
+            <center>
+            <b:commandButton value="Update" action="#{categoriaController.editarCategoria(categoria)}" class="btn-success"></b:commandButton>
+               -
+            <b:commandButton value="Delete" action="#{categoriaController.eliminarCategoria(categoria.idCategoria)}" class="btn-danger"></b:commandButton>
+            </center>
+        </h:column> 
+ 
+       </b:dataTable>     
+        <b:messages />
+       </h:form>
+        
+    </ui:define>
+
+</ui:composition>
