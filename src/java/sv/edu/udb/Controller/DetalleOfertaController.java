@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Categoria;
 import sv.edu.udb.Model.Detalleoferta;
 import sv.edu.udb.Model.Facade.CategoriaFacade;
@@ -72,6 +74,35 @@ public class DetalleOfertaController {
     // Metodo para listar Categorias
     public List<Categoria> getCategoriaList() {
         return categoriaFacade.findAll();
+    }
+    
+    // Metodo para nuevo DetalleOferta
+    public String nuevoDetalleOferta(){
+        detalleFacade.create(getDetalleOferta());
+        return "GetDetalleOferta?faces-redirect=true";
+    }
+    
+    //Metodo que obtiene los valores de DetalleOferta para luego poder modificar
+    public String editarDetalleOferta(Detalleoferta d){
+        detalleOferta = d;
+        return "UpdateDetalleOferta";
+    }
+    
+    // Metodo para modificar Venta
+    public String modificarDetalleOferta(){
+        detalleFacade.edit(detalleOferta);
+        return "GetDetalleOferta?faces-redirect=true";
+    }
+    
+    // Metodo para eliminar DetalleOferta
+    public void eliminarDetalleOferta(int id){
+        int idDetalle = id;
+        Detalleoferta detalleId = detalleFacade.find(idDetalle);
+        detalleFacade.remove(detalleId);
+        
+        //Agrega un mensaje
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "DetalleOferta Eliminada");
+        FacesContext.getCurrentInstance().addMessage(null,message);
     }
     
     // Setter & Getter

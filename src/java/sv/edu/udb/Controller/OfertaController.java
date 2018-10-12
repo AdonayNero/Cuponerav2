@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Facade.OfertaFacade;
 import sv.edu.udb.Model.Oferta;
 
@@ -27,9 +29,37 @@ public class OfertaController {
         oferta = new Oferta();
     }
     
-    // Metodo para listar Empresa
+    // Metodo para listar ofertas
     public List<Oferta> getOfertaList() {
         return ofertaFacade.findAll();
+    }
+    
+    //Metodo para nueva oferta
+    public String nuevaOferta(){
+        ofertaFacade.create(getOferta());
+        return "GetOferta?faces-redirect=true";
+    }
+    
+    //Metodo que obtiene los valores de Oferta para luego poder modificar
+    public String editarOferta(Oferta o){
+        oferta = o;
+        return "UpdateOferta";
+    }
+    
+    //Metodo para modificar Oferta
+    public String modificarOferta(){
+        ofertaFacade.edit(oferta);
+        return "GetOferta?faces-redirect=true";
+    }
+    
+    //Metodo para eliminar oferta
+    public void eliminarOferta(String c){
+        String codOferta = c;
+        Oferta ofertacod = ofertaFacade.find(codOferta);
+        ofertaFacade.remove(ofertacod);
+       
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminada", "Oferta Eliminada");
+        FacesContext.getCurrentInstance().addMessage(null,message);
     }
 
     public Oferta getOferta() {
@@ -39,8 +69,5 @@ public class OfertaController {
     public void setOferta(Oferta oferta) {
         this.oferta = oferta;
     }
-    
-    
-    
     
 }

@@ -29,7 +29,7 @@
             
             <hr></hr>       
             <h:form>
-            <p:commandLink value="Nueva Categoría" action="AddCategoria.xhtml"  class="btn btn-primary" style="width: 175px;">
+            <p:commandLink value="Nueva Categoría" action="AddCategoria.xhtml" class="btn btn-primary" style="width: 175px;">
             </p:commandLink>
             </h:form>
         </div>    
@@ -74,7 +74,7 @@
             <center>
             <b:commandButton value="Update" action="#{categoriaController.editarCategoria(categoria)}" class="btn-success"></b:commandButton>
                -
-            <b:commandButton value="Delete" action="#{categoriaController.eliminarCategoria(categoria.idCategoria)}" class="btn-danger"></b:commandButton>
+               <b:commandButton value="Delete" action="#{categoriaController.eliminarCategoria(categoria.idCategoria)}" onclick="return confirm('Esta seguro de eliminar esta Categoría?')" class="btn-danger"></b:commandButton>
             </center>
         </h:column> 
  

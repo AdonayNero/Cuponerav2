@@ -31,54 +31,58 @@
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
-                <p:outputLabel for="idSucursal" value="Sucursal:"/>
-                <p:selectOneMenu id="idSucursal" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="" itemLabel="abc" itemValue="1" />
-                </p:selectOneMenu>  
+                <h:outputLabel for="idSucursal" value="Sucursal:"/>
+                <b:selectOneMenu id="idSucursal" class="form-control" value="#{detalleOfertaController.detalleOferta.idSucusal.idSucursal}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One"/>
+                    <f:selectItems value="#{detalleOfertaController.sucursalList}" var="s" itemLabel="#{s.direccion}" itemValue="#{s.idSucursal}" />
+                </b:selectOneMenu>  
                 
                 
-                <p:outputLabel for="idOferta" value="Oferta:"/>
-                <p:selectOneMenu id="idOferta" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="" itemLabel="abc" itemValue="1" />
-                </p:selectOneMenu>
+                <h:outputLabel for="idOferta" value="Oferta:"/>
+                <b:selectOneMenu id="idOferta" class="form-control" value="#{detalleOfertaController.detalleOferta.codOferta.codOferta}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One"/>
+                    <f:selectItems value="#{detalleOfertaController.ofertaList}" var="o" itemLabel="#{o.titulo}" itemValue="#{o.codOferta}" />
+                </b:selectOneMenu>
                 
-                <p:outputLabel for="idCategoria" value="Categoría:"/>
-                <p:selectOneMenu id="idCategoria" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="" itemLabel="abc" itemValue="1" />
-                </p:selectOneMenu>
+                <h:outputLabel for="idCategoria" value="Categoría:"/>
+                <b:selectOneMenu id="idCategoria" class="form-control" value="#{detalleOfertaController.detalleOferta.idCategoria.idCategoria}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One" />
+                    <f:selectItems value="#{detalleOfertaController.categoriaList}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCategoria}" />
+                </b:selectOneMenu>
                 
-                <p:outputLabel for="cantidad" value="Cantidad:"/>
-                <p:inputText id="cantidad" value="" required="true" requiredMessage="Por favor ingrese una cantidad">
-                </p:inputText>
+                <h:outputLabel for="cantidad" value="Cantidad:"/>
+                <b:inputText id="cantidad" class="form-control" value="#{detalleOfertaController.detalleOferta.cantidad}" 
+                             required="true" requiredMessage="Por favor ingrese una cantidad"
+                             validatorMessage="La cantidad debe ser mayor a 0"
+                             converterMessage="La cantidad debe ser numerico">
+                    <f:validateLongRange minimum="1"/>
+                </b:inputText>
                 
-                <p:outputLabel for="fechaInicio" value="Fecha Inicio:" />
-                <p:calendar id="fechaInicio" value="" showOn="button" />
+                <h:outputLabel for="fechaInicio" value="Fecha Inicio:" />
+                <p:calendar id="fechaInicio" showOn="button" value="#{detalleOfertaController.detalleOferta.fechaInicio}" required="true" requiredMessage="Seleccione una fecha"/>
                 
-                <p:outputLabel for="fechaFin" value="Fecha Fin:" />
-                <p:calendar id="fechaFin" value="" showOn="button" />
+                <h:outputLabel for="fechaFin" value="Fecha Fin:" />
+                <p:calendar id="fechaFin" showOn="button" value="#{detalleOfertaController.detalleOferta.fechaFin}" required="true" requiredMessage="Seleccione una fecha"/>
                 
-                <p:outputLabel for="estado" value="Estado:"/>
-                <p:selectOneMenu id="estado" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="Activo" itemValue="activo" />
-                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </p:selectOneMenu>
+                <h:outputLabel for="estado" value="Estado:"/>
+                <b:selectOneMenu id="estado" class="form-control" value="#{detalleOfertaController.detalleOferta.estado}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One" />
+                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                </b:selectOneMenu>
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-              <p:commandButton value="Guardar" class="btn-primary">
-              </p:commandButton>
+                      <b:commandButton value="Guardar" action="#{detalleOfertaController.nuevoDetalleOferta()}" class="btn-primary">
+              </b:commandButton>
               </f:facet>
                   
               <f:facet name="right">
-              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
                     <p:ajax update="panel" resetValues="true" />
-              </p:commandButton>
+              </b:commandButton>
               </f:facet>
               </p:toolbar>
           </h:form>

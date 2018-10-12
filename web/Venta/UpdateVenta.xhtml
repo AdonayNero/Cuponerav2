@@ -30,47 +30,49 @@
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
-                <p:outputLabel for="idCliente" value="Cliente:"/>
-                <p:selectOneMenu id="idCliente" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems itemLabel="abc" itemValue="1" />
-                </p:selectOneMenu>  
-                
-                <p:outputLabel for="idDetalle" value="Detalle Oferta:"/>
-                <p:selectOneMenu id="idDetalle" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems itemLabel="abc" itemValue="1" />
-                </p:selectOneMenu>  
+                <h:outputLabel for="CodVenta" value="Código Venta:"/>
+                <b:inputText id="CodVenta" class="form-control" value="#{ventaController.venta.codCupon}" required="true" requiredMessage="Ingrese el código de venta">
+                </b:inputText>  
                   
-                <p:outputLabel for="fechaVenta" value="Fecha Venta:" />
-                <p:calendar id="fechaVenta" value="" showOn="button" />
+                <h:outputLabel for="idCliente" value="Cliente:"/>
+                <b:inputText id="idCliente" class="form-control" value="#{ventaController.venta.codCliente}" required="true" requiredMessage="Ingrese el código de cliente">
+                </b:inputText>    
                 
-                <p:outputLabel for="pago" value="Forma de Pago:"/>
-                <p:selectOneMenu id="pago" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
+                <h:outputLabel for="idDetalle" value="Detalle Oferta:"/>
+                <b:selectOneMenu id="idDetalle" class="form-control" value="#{ventaController.venta.idDetalle.idDetalle}" required="true" requiredMessage="Seleccione una opción" >
+                    <f:selectItem itemLabel="Select One" />
+                    <f:selectItems value="#{ventaController.detalleofertaList}" var="d" itemLabel="#{d.idDetalle}" itemValue="#{d.idDetalle}" />
+                </b:selectOneMenu>
+                  
+                <h:outputLabel for="fechaVenta" value="Fecha Venta:" />
+                <p:calendar id="fechaVenta" value="#{ventaController.venta.fechaVenta}" required="true" requiredMessage="Seleccione una fecha" showOn="button" />
+                
+                <h:outputLabel for="pago" value="Forma de Pago:"/>
+                <b:selectOneMenu id="pago" class="form-control" value="#{ventaController.venta.formaPago}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One" />
                     <f:selectItem itemLabel="Contado" itemValue="Contado" />
                     <f:selectItem itemLabel="Credito" itemValue="Credito" />
-                </p:selectOneMenu>  
+                </b:selectOneMenu>  
                 
-                <p:outputLabel for="estado" value="Estado:"/>
-                <p:selectOneMenu id="estado" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="Activo" itemValue="activo" />
-                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </p:selectOneMenu>
+                <h:outputLabel for="estado" value="Estado:"/>
+                <b:selectOneMenu id="estado" class="form-control" value="#{ventaController.venta.estado}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One" />
+                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                </b:selectOneMenu>
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
-                  <f:facet name="left">
-              <p:commandButton value="Editar" class="btn-primary">
-              </p:commandButton>
+              <f:facet name="left">
+              <b:commandButton value="Editar" action="#{ventaController.modificarVenta()}" class="btn-primary">
+              </b:commandButton>
               </f:facet>
                   
               <f:facet name="right">
-              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
                     <p:ajax update="panel" resetValues="true" />
-              </p:commandButton>
+              </b:commandButton>
               </f:facet>
               </p:toolbar>
           </h:form>

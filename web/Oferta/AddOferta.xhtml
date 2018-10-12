@@ -21,7 +21,7 @@
         <li class="breadcrumb-item active">Agregar Oferta</li>
       </ol>
 
-      <!--  Formulario Categoria -->
+      <!--  Formulario Oferta -->
       <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Oferta</h3>
@@ -30,58 +30,62 @@
           
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
+                  
+                  <h:outputLabel for="codigo" value="Código:" />
+                  <b:inputText id="codigo" value="#{ofertaController.oferta.codOferta}" required="true" requiredMessage="Por favor ingrese un codigo">
+                  </b:inputText>
                     
-                <p:outputLabel for="titulo" value="Título:"/>
-                <p:inputText id="titulo" value="" required="true" requiredMessage="Por favor ingrese un título">
-                </p:inputText>
+                <h:outputLabel for="titulo" value="Título:"/>
+                <b:inputText id="titulo" value="#{ofertaController.oferta.titulo}" required="true" requiredMessage="Por favor ingrese un título">
+                </b:inputText>
                 
-                <p:outputLabel for="subTitulo" value="SubTítulo:"/>
-                <p:inputText id="subTitulo" value="" required="true" requiredMessage="Por favor ingrese un subtítulo">
-                </p:inputText>
+                <h:outputLabel for="subTitulo" value="SubTítulo:"/>
+                <b:inputText id="subTitulo" value="#{ofertaController.oferta.subTitulo}" required="true" requiredMessage="Por favor ingrese un subtítulo">
+                </b:inputText>
                 
-                <p:outputLabel for="img" value="Imagen:"/>
-                <p:inputText id="img" value="" required="true" requiredMessage="Por favor ingrese una imagen">
-                </p:inputText>
+                <h:outputLabel for="img" value="Imagen:"/>
+                <b:inputText id="img" value="#{ofertaController.oferta.img}" required="true" requiredMessage="Por favor ingrese una imagen">
+                </b:inputText>
                 
-                <p:outputLabel for="detalles" value="Detalles Generales:" />
-                <p:inputTextarea rows="2" cols="50" id="detalles" value="" required="true" requiredMessage="Por favor ingrese un detalle general">
+                <h:outputLabel for="detalles" value="Detalles Generales:" />
+                <p:inputTextarea rows="2" cols="50" id="detalles" value="#{ofertaController.oferta.detalleGenerales}" required="true" requiredMessage="Por favor ingrese un detalle general">
                 </p:inputTextarea>  
                 
-                <p:outputLabel for="descripcion" value="Descripción:" />
-                <p:inputTextarea rows="2" cols="50" id="descripcion" value="" required="true" requiredMessage="Por favor ingrese una descripcion">
+                <h:outputLabel for="descripcion" value="Descripción:" />
+                <p:inputTextarea rows="2" cols="50" id="descripcion" value="#{ofertaController.oferta.descripcion}" required="true" requiredMessage="Por favor ingrese una descripcion">
                 </p:inputTextarea>  
                 
-                <p:outputLabel for="valorRegular" value="Valor Regular ($):"/>
-                <p:inputText id="valorRegular" value="" required="true" requiredMessage="Por favor ingrese un valor">
-                </p:inputText>
+                <h:outputLabel for="valorRegular" value="Valor Regular ($):"/>
+                <b:inputText id="valorRegular" value="#{ofertaController.oferta.valorRegular}" required="true" requiredMessage="Por favor ingrese un valor">
+                </b:inputText>
                 
-                <p:outputLabel for="valorOferta" value="Valor Oferta ($):"/>
-                <p:inputText id="valorOferta" value="" required="true" requiredMessage="Por favor ingrese un valor">
-                </p:inputText>
+                <h:outputLabel for="valorOferta" value="Valor Oferta ($):"/>
+                <b:inputText id="valorOferta" value="#{ofertaController.oferta.valorOferta}" required="true" requiredMessage="Por favor ingrese un valor">
+                </b:inputText>
                 
-                <p:outputLabel for="estado" value="Estado:"/>
-                <p:selectOneMenu id="estado" style="width:227px">
+                <h:outputLabel for="estado" value="Estado:"/>
+                <b:selectOneMenu id="estado" style="width:227px" required="true" value="#{ofertaController.oferta.estado}">
                     <f:selectItem itemLabel="Select One" itemValue="" />
                     <f:selectItem itemLabel="Activo" itemValue="activo" />
                     <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </p:selectOneMenu>
+                </b:selectOneMenu>
                 
-                <p:outputLabel for="observacion" value="Observación:" />
-                <p:inputTextarea rows="2" cols="50" id="observacion" value="" required="true" requiredMessage="Por favor ingrese una observación">
+                <h:outputLabel for="observacion" value="Observación:" />
+                <p:inputTextarea rows="2" cols="50" id="observacion" value="#{ofertaController.oferta.observaciones}" required="true" requiredMessage="Por favor ingrese una observación">
                 </p:inputTextarea>  
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-              <p:commandButton value="Guardar" class="btn-primary">
-              </p:commandButton>
+                      <b:commandButton value="Guardar" class="btn-primary" action="#{ofertaController.nuevaOferta()}">
+              </b:commandButton>
               </f:facet>
                   
               <f:facet name="right">
-              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
                     <p:ajax update="panel" resetValues="true" />
-              </p:commandButton>
+              </b:commandButton>
               </f:facet>
               </p:toolbar>
           </h:form>

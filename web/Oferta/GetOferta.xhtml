@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -21,16 +22,16 @@
         <li class="breadcrumb-item active">Oferta</li>
       </ol>
 
-      <!--  Formulario Categoria -->
+      <!--  Formulario Oferta -->
       <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Oferta</h3>
             
             <hr></hr>       
-            
-            <p:commandButton value="Nueva Oferta" class="btn btn-primary" style="width: 175px;">
-            </p:commandButton>
-    
+            <h:form>
+            <p:commandLink value="Nueva Oferta" action="AddOferta.xhtml" class="btn btn-primary" style="width: 175px;">
+            </p:commandLink>
+            </h:form>
         </div>    
             
         </div>
@@ -45,26 +46,65 @@
                     columnVisibility="true"
                     copy="true"
                     print="true"
-                    style="width: 100%; margin:0 auto;"
+                    style="width: 75%; margin:0 auto;"
+                    responsive="true"
                     >
        
-            <b:dataTableColumn value="#{oferta.codOferta}" label="Código" />
-            <b:dataTableColumn value="#{oferta.titulo}" label="Título" />
-            <b:dataTableColumn value="#{oferta.detalleGenerales}" label="Detalles Generales" />
-            <b:dataTableColumn value="#{oferta.descripcion}" label="Descripción" />
-            <b:dataTableColumn value="#{oferta.valorRegular}" label="Valor Regular ($)" />
-            <b:dataTableColumn value="#{oferta.valorOferta}" label="Valor Oferta ($)" />
-            <b:dataTableColumn value="#{oferta.estado}" label="Estado" />
-            <b:dataTableColumn value="#{oferta.observaciones}" label="Observaciones" />
-            <b:dataTableColumn label="Operaciones">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Codigo" />
+                </f:facet>
+                <h:outputText value="#{oferta.codOferta}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Titulo" />
+                </f:facet>
+                <h:outputText value="#{oferta.titulo}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Detalles Generales" />
+                </f:facet>
+                <h:outputText value="#{oferta.detalleGenerales}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Descripcion" />
+                </f:facet>
+                <h:outputText value="#{oferta.descripcion}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Valor Regular ($)" />
+                </f:facet>
+                <h:outputText value="#{oferta.valorRegular}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Valor Oferta ($)" />
+                </f:facet>
+                <h:outputText value="#{oferta.valorOferta}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Estado" />
+                </f:facet>
+                <h:outputText value="#{oferta.estado}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Operaciones" />
+                </f:facet>
                 <center>
-                <b:commandButton value="Update" class="btn-success" ></b:commandButton>
+                <b:commandButton value="Update" action="#{ofertaController.editarOferta(oferta)}" class="btn-success" ></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" action="#{ofertaController.eliminarOferta(oferta.codOferta)}" class="btn-danger"></b:commandButton>
                 </center>
-            </b:dataTableColumn>
+            </h:column>
             
-       </b:dataTable>     
+       </b:dataTable>
+        <b:messages />
             </h:form>
         
     </ui:define>

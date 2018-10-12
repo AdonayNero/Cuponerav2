@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Detalleoferta;
 import sv.edu.udb.Model.Facade.VentaFacade;
 import sv.edu.udb.Model.Facade.DetalleofertaFacade;
@@ -43,6 +45,35 @@ public class VentaController {
     // Metodo para listar DetalleOferta
     public List<Detalleoferta> getDetalleofertaList(){
         return detalleFacade.findAll();
+    }
+    
+    // Metodo para nueva Venta
+    public String nuevaVenta(){
+        ventaFacade.create(getVenta());
+        return "GetVenta?faces-redirect=true";
+    }
+    
+    //Metodo que obtiene los valores de Venta para luego poder modificar
+    public String editarVenta(Venta v){
+        venta = v;
+        return "UpdateVenta";
+    }
+    
+    // Metodo para modificar Venta
+    public String modificarVenta(){
+        ventaFacade.edit(venta);
+        return "GetVenta?faces-redirect=true";
+    }
+    
+    // Metodo para eliminar Venta
+    public void eliminarVenta(String codigo){
+        String CodVenta = codigo;
+        Venta ventaCod = ventaFacade.find(CodVenta);
+        ventaFacade.remove(ventaCod);
+        
+        //Agrega un mensaje
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminada", "Venta Eliminada");
+        FacesContext.getCurrentInstance().addMessage(null,message);
     }
     
     // Setter $ Getter

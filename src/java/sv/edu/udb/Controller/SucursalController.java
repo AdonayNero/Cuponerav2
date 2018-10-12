@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Empresa;
 import sv.edu.udb.Model.Facade.EmpresaFacade;
 import sv.edu.udb.Model.Facade.SucursalFacade;
@@ -43,6 +45,35 @@ public class SucursalController {
     // Metodo para listar Empresa
     public List<Empresa> getEmpresaList(){
         return empresaFacade.findAll();
+    }
+    
+    // Metodo para nueva Sucursal
+    public String nuevaSucursal(){
+        sucursalFacade.create(getSucursal());
+        return "GetSucursal?faces-redirect=true";
+    }
+    
+    //Metodo que obtiene los valores de Sucursal para luego poder modificar
+    public String editarSucursal(Sucursal s){
+        sucursal = s;
+        return "UpdateSucursal";
+    }
+    
+    // Metodo para modificar Sucursal
+    public String modificarSucursal(){
+        sucursalFacade.edit(sucursal);
+        return "GetSucursal?faces-redirect=true";
+    }
+    
+    // Metodo para eliminar Sucursal
+    public void eliminarSucursal(int id){
+        int idSucursal = id;
+        Sucursal sucursalid = sucursalFacade.find(idSucursal);
+        sucursalFacade.remove(sucursalid);
+        
+        //Agrega un mensaje
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminada", "Sucursal Eliminada");
+        FacesContext.getCurrentInstance().addMessage(null,message);
     }
 
     public Sucursal getSucursal() {
