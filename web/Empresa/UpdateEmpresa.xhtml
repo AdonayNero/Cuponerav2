@@ -30,39 +30,28 @@
           
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
+                  <h:inputHidden id="codigo" value="#{empresaController.empresa.codEmpresa}"/>
+                  <h:inputHidden id="encargado" value="#{empresaController.empresa.encargado}"/>
+                  <h:inputHidden id="estado" value="#{empresaController.empresa.estado}"/>
+                  <h:inputHidden id="porcetaje" value="#{empresaController.empresa.porcentaje}"/>
                   
                 <p:outputLabel for="nombre" value="Nombre:"/>
-                <p:inputText id="nombre" value="" required="true" requiredMessage="Por favor ingrese una empresa">
-                </p:inputText>
-                
-                <p:outputLabel for="encargado" value="Encargado:"/>
-                <p:inputText id="encargado" value="" required="true" requiredMessage="Por favor ingrese un encargado">
+                <p:inputText id="nombre" value="#{empresaController.empresa.nombre}" required="true" requiredMessage="Por favor ingrese una empresa">
                 </p:inputText>
                 
                 <p:outputLabel for="nitEmpleado" value="NIT de Empleado:"/>
-                <p:inputText id="nitEmpleado" value="" required="true" requiredMessage="Por favor ingrese el nit del empleado">
+                <p:inputText id="nitEmpleado" value="#{empresaController.empresa.nitEmp}" required="true" requiredMessage="Por favor ingrese el nit del empleado">
                 </p:inputText>
-                
-                <p:outputLabel for="porcentaje" value="Porcentaje:"/>
-                <p:inputText id="porcentaje" value="" required="true" requiredMessage="Por favor ingrese un porcentaje">
-                </p:inputText>
-                
-                <p:outputLabel for="estado" value="Estado:"/>
-                <p:selectOneMenu id="estado" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="Activo" itemValue="activo" />
-                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </p:selectOneMenu>
                 
                 <p:outputLabel for="observacion" value="Observación:" />
-                <p:inputTextarea rows="5" cols="50" id="observacion" value="" required="true" requiredMessage="Por favor ingrese una observación">
+                <p:inputTextarea rows="5" cols="50" id="observacion" value="#{empresaController.empresa.observacion}" required="true" requiredMessage="Por favor ingrese una observación">
                 </p:inputTextarea>  
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-              <p:commandButton value="Editar" class="btn-primary">
+                      <p:commandButton value="Editar" class="btn-primary" action="#{empresaController.update()}">
               </p:commandButton>
               </f:facet>
                   

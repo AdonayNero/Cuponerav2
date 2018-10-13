@@ -57,8 +57,8 @@
                     <f:selectItems value="#{rolesController.rolesList}" var="r" itemLabel="#{r.nombre}" itemValue="#{r.idRoles}" />
                 </p:selectOneMenu>
                   
-                <p:outputLabel for="direccion" value="#{usuarioController.usuario.direccion}"/>
-                <p:inputTextarea rows="3" cols="50" id="direccion" value="" required="true" requiredMessage="Por favor ingrese una dirección">
+                <p:outputLabel for="direccion" value="Direccion"/>
+                <p:inputTextarea rows="3" cols="50" id="direccion" value="#{usuarioController.usuario.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
                 </p:inputTextarea>
                 
               </h:panelGrid>

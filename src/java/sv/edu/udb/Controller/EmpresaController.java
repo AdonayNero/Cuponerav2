@@ -2,9 +2,12 @@
 package sv.edu.udb.Controller;
 
 import java.util.List;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.Model.Empresa;
 import sv.edu.udb.Model.Facade.EmpresaFacade;
 
@@ -31,6 +34,32 @@ public class EmpresaController {
     public List<Empresa> getEmpresaList() {
         return empresaFacade.findAll();
     }
+    
+    public String create(){
+        empresa.setCodEmpresa(this.genCodigo());
+        empresa.setEncargado("US8646");
+        empresa.setEstado(" ");
+        empresa.setPorcentaje("5");
+        empresaFacade.create(empresa);
+        empresa = new Empresa();
+        return "GetEmpresa";
+    }
+    
+    public void delete(Empresa e){
+        empresaFacade.remove(empresa);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "Empresa Eliminada");
+        FacesContext.getCurrentInstance().addMessage(null,message);
+        
+    }
+    public String findById(Empresa e){
+        empresa = empresaFacade.find(e.getCodEmpresa());
+        return "UpdateEmpresa";
+    }
+    public String update(){
+        empresaFacade.edit(empresa);
+        empresa = new Empresa();
+        return "GetEmpresa";
+    }
 
     public Empresa getEmpresa() {
         return empresa;
@@ -40,6 +69,12 @@ public class EmpresaController {
         this.empresa = empresa;
     }
     
-    
+    public String genCodigo(){
+        Random rnd = new Random();
+        rnd.setSeed(System.currentTimeMillis());
+        int aleatorio = rnd.nextInt(9000);
+        String codigo = "EM"+aleatorio;
+        return codigo;
+    }
     
 }

@@ -53,12 +53,12 @@
             <b:dataTableColumn value="#{empresa.encargado}" label="Encargado" />
             <b:dataTableColumn value="#{empresa.nitEmp}" label="NIT Encargado" />
             <b:dataTableColumn value="#{empresa.porcentaje}" label="Porcentaje(%)" />
-            <b:dataTableColumn value="#{empresa.estado}" label="Estado" />
+            
             <b:dataTableColumn label="Operaciones">
                 <center>
-                <b:commandButton value="Update" class="btn-success"></b:commandButton>
+                    <b:commandButton value="Update" action="#{empresaController.findById(empresa)}" class="btn-success"></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" action="#{empresaController.delete(empresa)}" onclick="return confirm('Desea eliminar esta empresa')" class="btn-danger"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             

@@ -30,7 +30,10 @@
           
           <h:form id="contactForm">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
-                  <h:inputHidden value="#{usuarioController.usuario.codUsuario}"/>  
+                  <h:inputHidden value="#{usuarioController.usuario.codUsuario}"/>
+                  <h:inputHidden value="#{usuarioController.usuario.estado}"/>
+                  <h:inputHidden value="#{usuarioController.usuario.pass}"/>
+                  <h:inputHidden value="#{usuarioController.usuario.token}"/>
                 <p:outputLabel for="nombre" value="Nombre:"/>
                 <p:inputText id="nombre" value="#{usuarioController.usuario.nombre}" required="true" requiredMessage="Por favor ingrese un usuario">
                 </p:inputText>
@@ -48,25 +51,25 @@
                 </p:inputText>
                 
                 <p:outputLabel for="tipoAcceso" value="Tipo de Acceso:"/>
-                <p:selectOneMenu id="tipoAcceso" style="width:227px">
+                <p:selectOneMenu id="tipoAcceso" value="#{usuarioController.usuario.tipoAcceso.idRoles}" style="width:227px">
                     <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems itemLabel="abc" itemValue="1" />
+                    <f:selectItems value="#{rolesController.rolesList}" var="r" itemLabel="#{r.nombre}" itemValue="#{r.idRoles}" />
                 </p:selectOneMenu>
                   
                 <p:outputLabel for="direccion" value="Dirección:"/>
-                <p:inputTextarea rows="3" cols="50" id="direccion" value="" required="true" requiredMessage="Por favor ingrese una dirección">
+                <p:inputTextarea rows="3" cols="50" id="direccion" value="#{usuarioController.usuario.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
                 </p:inputTextarea>
                   
               </h:panelGrid>
         
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-              <p:commandButton value="Editar" class="btn-primary">
+              <p:commandButton value="Editar" class="btn-primary" action="#{usuarioController.update()}">
               </p:commandButton>
               </f:facet>
                   
               <f:facet name="right">
-                  <p:commandButton value="Restablecer" action="#{usuarioController.update()}" class="btn-success" style="margin-right:300px;" >
+                  <p:commandButton value="Restablecer"  class="btn-success" style="margin-right:300px;" >
                     <p:ajax update="panel" resetValues="true" />
               </p:commandButton>
               </f:facet>

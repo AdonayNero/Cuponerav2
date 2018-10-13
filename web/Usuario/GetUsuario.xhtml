@@ -54,14 +54,13 @@
             <b:dataTableColumn value="#{usuario.dui}" label="DUI" />
             <b:dataTableColumn value="#{usuario.telefono}" label="Teléfono" />
             <b:dataTableColumn value="#{usuario.email}" label="Email" />
-            <b:dataTableColumn value="#{usuario.pass}" label="Contraseña" />
             <b:dataTableColumn value="#{usuario.estado}" label="Estado" />
             <b:dataTableColumn value="#{usuario.tipoAcceso.nombre}" label="Tipo de Acceso" />
             <b:dataTableColumn label="Operaciones">
                 <center>
                     <b:commandButton value="Update" action="#{usuarioController.findById(usuario)}" class="btn-success"></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" class="btn-danger" action="#{usuarioController.delete(usuario)}" onclick="return confirm('Desea eliminar este rol')"></b:commandButton>
+                <b:commandButton value="Delete" class="btn-danger" action="#{usuarioController.delete(usuario)}" onclick="return confirm('Desea eliminar este Usuario')"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             
