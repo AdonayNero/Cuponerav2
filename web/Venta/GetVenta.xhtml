@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -45,6 +46,8 @@
                     copy="true"
                     print="true"
                     style="width: 100%; margin:0 auto;"
+                      responsive="true"
+                    class="table-striped"
                     >
        
             <b:dataTableColumn value="#{venta.codCupon}" label="Código" />
@@ -62,13 +65,14 @@
             <b:dataTableColumn value="#{venta.estado}" label="Estado" />
             <b:dataTableColumn label="Operaciones">
                 <center>
-                    <b:commandButton value="Update" action="#{ventaController.editarVenta(venta)}" class="btn-success"></b:commandButton>
+                <b:commandButton value="Update" action="#{ventaController.editarVenta(venta)}" class="btn-success btn-sm"></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" action="#{ventaController.eliminarVenta(venta.codCupon)}" onclick="return confirm('Esta seguro de querer eliminar esta Venta?')" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" action="#{ventaController.eliminarVenta(venta.codCupon)}" onclick="return confirm('Esta seguro de querer eliminar esta Venta?')" class="btn-danger btn-sm"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             
        </b:dataTable>     
+        <b:messages/>
             </h:form>
     
     </ui:define>

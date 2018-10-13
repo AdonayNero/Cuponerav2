@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -20,46 +21,55 @@
         </li>
         <li class="breadcrumb-item active">Modificar Sucursal</li>
       </ol>
-
+        <li class="breadcrumb" style="width: 87px">
+          <a href="GetSucursal.xhtml">Cancelar</a>
+        </li>
       <!--  Formulario Categoria -->
       <div class="row">
-        <div class="col-lg-8 mb-4">
+        <div class="col-lg-12">
             <h3>Sucursal</h3>
             
             <hr></hr>
           
-          <h:form id="contactForm">
+          <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
                 <h:inputHidden id="id" value="#{sucursalController.sucursal.idSucursal}" required="true" requiredMessage="Por favor ingrese una categoría">
                 </h:inputHidden>  
                   <br/>
-                <h:outputLabel for="idEmpresa" value="Empresa:"/>
+                
+                <h:outputLabel for="idEmpresa" class="col-lg-2 control-label" value="Empresa:"/>
                 <b:selectOneMenu id="idEmpresa" class="form-control" value="#{sucursalController.sucursal.codEmpresa.codEmpresa}" required="true" requiredMessage="Seleccione una opción" >
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItems value="#{sucursalController.empresaList}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codEmpresa}" />
                 </b:selectOneMenu>   
                   
-                <h:outputLabel for="email" value="Email:"/>
+                <h:outputLabel for="email" class="col-lg-2 control-label" value="Email:"/>
                 <b:inputText type="email" class="form-control" id="email" value="#{sucursalController.sucursal.email}" 
                              required="true" requiredMessage="Por favor ingrese una email"
                              validatorMessage="Email Incorrecto. Sugerido: empresa@gmail.com" >
                     <f:validateRegex pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/>
+                    <b:message for="email"></b:message>
                 </b:inputText>
                 
-                <h:outputLabel for="telefono" value="Teléfono:"/>
+                <h:outputLabel for="telefono" class="col-lg-2 control-label" value="Teléfono:"/>
                 <b:inputText id="telefono" class="form-control" value="#{sucursalController.sucursal.telefono}" 
                              required="true" requiredMessage="Por favor ingrese un teléfono"
                              validatorMessage="Telefono Incorrecto. Sugerido: 2222-2345 " >  
-                <f:validateRegex pattern="^[2|7|6]{1}[0-9]{3}-[0-9]{4}"/>                 
+                <f:validateRegex pattern="^[2|7|6]{1}[0-9]{3}-[0-9]{4}"/>          
+                <b:message for="telefono"></b:message>
                 </b:inputText>
                 
-                <h:outputLabel for="dependiente" value="Dependiente:"/>
-                <b:inputText id="dependiente" class="form-control" value="#{sucursalController.sucursal.dependiente}" required="true" requiredMessage="Por favor ingrese un dependiente">
+                <h:outputLabel for="dependiente" class="col-lg-2 control-label" value="Dependiente:"/>
+                <b:inputText id="dependiente" class="form-control" value="#{sucursalController.sucursal.dependiente}" validatorMessage="Ingrese información veridica" required="true" requiredMessage="Por favor ingrese un dependiente">
+                    <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="dependiente"></b:message>
                 </b:inputText>
                  
-                <h:outputLabel for="direccion" value="Dirección:"/>
-                <p:inputTextarea rows="5" cols="50" class="form-control" id="direccion" value="#{sucursalController.sucursal.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
+                <h:outputLabel for="direccion" class="col-lg-2 control-label" value="Dirección:"/>
+                <p:inputTextarea rows="5" cols="50" class="form-control" id="direccion" validatorMessage="Ingrese información veridica" value="#{sucursalController.sucursal.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
+                    <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="direccion"></b:message>
                 </p:inputTextarea>
                 
               </h:panelGrid>
@@ -68,15 +78,10 @@
                   
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-                      <b:commandButton value="Editar" action="${sucursalController.modificarSucursal()}" class="btn-primary">
+                      <b:commandButton value="Guardar Cambios" action="${sucursalController.modificarSucursal()}" class="btn btn-primary btn-sm">
               </b:commandButton>
               </f:facet>
                   
-              <f:facet name="right">
-              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
-                    <p:ajax update="panel" resetValues="true" />
-              </b:commandButton>
-              </f:facet>
               </p:toolbar>
           </h:form>
         </div>

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -27,10 +28,10 @@
             <h3>Empresa</h3>
             
             <hr></hr>       
-            
-            <p:commandButton value="Nueva Empresa" class="btn btn-primary" style="width: 175px;">
-            </p:commandButton>
-    
+             <h:form>
+            <b:commandButton value="Nueva Empresa" action="AddEmpresa.xhtml" class="btn btn-primary btn-sm" style="width: 175px;">
+            </b:commandButton>
+            </h:form>
         </div>    
             
         </div>
@@ -46,23 +47,28 @@
                     copy="true"
                     print="true"
                     style="width: 75%; margin:0 auto;"
+                    responsive="true"
+                    class="table-striped"
                     >
        
             <b:dataTableColumn value="#{empresa.codEmpresa}" label="Código" />
             <b:dataTableColumn value="#{empresa.nombre}" label="Nombre" />
             <b:dataTableColumn value="#{empresa.encargado}" label="Encargado" />
-            <b:dataTableColumn value="#{empresa.nitEmp}" label="NIT Encargado" />
+            <b:dataTableColumn value="#{empresa.nitEmp}" label="NIT Empresa" />
             <b:dataTableColumn value="#{empresa.porcentaje}" label="Porcentaje(%)" />
+            <b:dataTableColumn value="#{empresa.estado}" label="Estado" />
+            <b:dataTableColumn value="#{empresa.observacion}" label="Observaciones" />
             
             <b:dataTableColumn label="Operaciones">
                 <center>
-                    <b:commandButton value="Update" action="#{empresaController.findById(empresa)}" class="btn-success"></b:commandButton>
+                <b:commandButton value="Update" action="#{empresaController.findById(empresa)}" class="btn-success btn-sm"></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" action="#{empresaController.delete(empresa)}" onclick="return confirm('Desea eliminar esta empresa')" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" action="#{empresaController.delete(empresa)}" onclick="return confirm('Desea eliminar esta empresa')" class="btn-danger btn-sm"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             
        </b:dataTable>     
+        <b:messages />
             </h:form>
 
     </ui:define>

@@ -29,8 +29,8 @@
             
             <hr></hr>       
             <h:form>
-            <p:commandLink value="Nueva Oferta" action="AddOferta.xhtml" class="btn btn-primary" style="width: 175px;">
-            </p:commandLink>
+            <b:commandLink value="Nueva Oferta" action="AddOferta.xhtml" class="btn btn-primary btn-sm" style="width: 175px;">
+            </b:commandLink>
             </h:form>
         </div>    
             
@@ -48,6 +48,7 @@
                     print="true"
                     style="width: 75%; margin:0 auto;"
                     responsive="true"
+                    class="table-striped"
                     >
        
             <h:column>
@@ -97,9 +98,9 @@
                     <h:outputText value="Operaciones" />
                 </f:facet>
                 <center>
-                <b:commandButton value="Update" action="#{ofertaController.editarOferta(oferta)}" class="btn-success" ></b:commandButton>
+                <b:commandButton value="Update" action="#{ofertaController.editarOferta(oferta)}" class="btn-success btn-sm" ></b:commandButton>
                 <br/><br/>
-                <b:commandButton value="Delete" action="#{ofertaController.eliminarOferta(oferta.codOferta)}" class="btn-danger"></b:commandButton>
+                <b:commandButton value="Delete" action="#{ofertaController.eliminarOferta(oferta.codOferta)}" class="btn-danger btn-sm"></b:commandButton>
                 </center>
             </h:column>
             

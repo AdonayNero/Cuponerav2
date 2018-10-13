@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -27,10 +28,10 @@
             <h3>Rol</h3>
             
             <hr></hr>       
-            
-            <p:commandButton value="Nuevo Rol" class="btn btn-primary" style="width: 175px;">
-            </p:commandButton>
-    
+            <h:form>
+            <b:commandButton value="Nuevo Rol" class="btn btn-primary btn-sm" style="width: 175px;">
+            </b:commandButton>
+            </h:form>
         </div>    
             
         </div>
@@ -46,6 +47,8 @@
                     copy="true"
                     print="true"
                     style="width: 75%; margin:0 auto;"
+                    responsive="true"
+                    class="table-striped"
                     >
        
             <b:dataTableColumn value="#{roles.idRoles}" label="ID" />
@@ -53,13 +56,14 @@
             <b:dataTableColumn value="#{roles.descripcion}" label="Descripción" />
             <b:dataTableColumn label="Operaciones">
                 <center>
-                    <b:commandButton value="Update" class="btn-success" action="#{rolesController.getById(roles)}" ></b:commandButton>
+                <b:commandButton value="Update" class="btn-success btn-sm" action="#{rolesController.getById(roles)}" ></b:commandButton>
                 -
-                <b:commandButton value="Delete" class="btn-danger" action="#{rolesController.delete(roles)}" onclick="return confirm('Desea eliminar este rol')"></b:commandButton>
+                <b:commandButton value="Delete" class="btn-danger btn-sm" action="#{rolesController.delete(roles)}" onclick="return confirm('Desea eliminar este rol')"></b:commandButton>
                 </center>
             </b:dataTableColumn>
             
-       </b:dataTable>     
+       </b:dataTable>    
+        <b:messages />
             </h:form>
         
     </ui:define>

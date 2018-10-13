@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -20,6 +21,9 @@
         </li>
         <li class="breadcrumb-item active">Modificar Detalle Oferta</li>
       </ol>
+      <li class="breadcrumb" style="width: 87px">
+          <a href="GetDetalleOferta.xhtml">Cancelar</a>
+        </li>
 
       <!--  Formulario Categoria -->
       <div class="row">
@@ -28,46 +32,47 @@
             
             <hr></hr>
           
-          <h:form id="contactForm">
+          <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
                 <h:inputHidden value="#{detalleOfertaController.detalleOferta.idDetalle}"/>
                 <br/>
                 
-                <h:outputLabel for="idSucursal" value="Sucursal:"/>
+                <h:outputLabel for="idSucursal" class="col-lg-2 control-label" value="Sucursal:"/>
                 <b:selectOneMenu id="idSucursal" class="form-control" value="#{detalleOfertaController.detalleOferta.idSucusal.idSucursal}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One"/>
                     <f:selectItems value="#{detalleOfertaController.sucursalList}" var="s" itemLabel="#{s.direccion}" itemValue="#{s.idSucursal}" />
                 </b:selectOneMenu>  
                 
                 
-                <h:outputLabel for="idOferta" value="Oferta:"/>
+                <h:outputLabel for="idOferta" class="col-lg-2 control-label" value="Oferta:"/>
                 <b:selectOneMenu id="idOferta" class="form-control" value="#{detalleOfertaController.detalleOferta.codOferta.codOferta}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One"/>
                     <f:selectItems value="#{detalleOfertaController.ofertaList}" var="o" itemLabel="#{o.titulo}" itemValue="#{o.codOferta}" />
                 </b:selectOneMenu>
                 
-                <h:outputLabel for="idCategoria" value="Categoría:"/>
+                <h:outputLabel for="idCategoria" class="col-lg-2 control-label" value="Categoría:"/>
                 <b:selectOneMenu id="idCategoria" class="form-control" value="#{detalleOfertaController.detalleOferta.idCategoria.idCategoria}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItems value="#{detalleOfertaController.categoriaList}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idCategoria}" />
                 </b:selectOneMenu>
                 
-                <h:outputLabel for="cantidad" value="Cantidad:"/>
-                <b:inputText id="cantidad" class="form-control" value="#{detalleOfertaController.detalleOferta.cantidad}" 
+                <h:outputLabel for="cantidad" class="col-lg-2 control-label" value="Cantidad:"/>
+                <b:inputText type="text" id="cantidad" class="form-control" value="#{detalleOfertaController.detalleOferta.cantidad}" 
                              required="true" requiredMessage="Por favor ingrese una cantidad"
                              validatorMessage="La cantidad debe ser mayor a 0"
                              converterMessage="La cantidad debe ser numerico">
                     <f:validateLongRange minimum="1"/>
+                    <b:message for="cantidad"></b:message>
                 </b:inputText>
                 
-                <h:outputLabel for="fechaInicio" value="Fecha Inicio:" />
+                <h:outputLabel for="fechaInicio" class="col-lg-2 control-label" value="Fecha Inicio:" />
                 <p:calendar id="fechaInicio" value="#{detalleOfertaController.detalleOferta.fechaInicio}" showOn="button" required="true" requiredMessage="Seleccione una fecha"/>
                 
-                <h:outputLabel for="fechaFin" value="Fecha Fin:" />
+                <h:outputLabel for="fechaFin" class="col-lg-2 control-label" value="Fecha Fin:" />
                 <p:calendar id="fechaFin" value="#{detalleOfertaController.detalleOferta.fechaFin}" showOn="button" required="true" requiredMessage="Seleccione una fecha" />
                 
-                <h:outputLabel for="estado" value="Estado:"/>
+                <h:outputLabel for="estado" class="col-lg-2 control-label" value="Estado:"/>
                 <b:selectOneMenu id="estado" class="form-control" value="#{detalleOfertaController.detalleOferta.estado}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItem itemLabel="Activo" itemValue="Activo" />
@@ -78,13 +83,7 @@
         
               <p:toolbar style="background-color: white; border: none;">
               <f:facet name="left">
-              <b:commandButton value="Editar" action="#{detalleOfertaController.modificarDetalleOferta()}" class="btn-primary">
-              </b:commandButton>
-              </f:facet>
-                  
-              <f:facet name="right">
-              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
-                    <p:ajax update="panel" resetValues="true" />
+              <b:commandButton value="Guardar Cambios" action="#{detalleOfertaController.modificarDetalleOferta()}" class="btn btn-primary btn-sm">
               </b:commandButton>
               </f:facet>
               </p:toolbar>

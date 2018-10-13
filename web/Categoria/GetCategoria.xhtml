@@ -29,8 +29,8 @@
             
             <hr></hr>       
             <h:form>
-            <p:commandLink value="Nueva Categoría" action="AddCategoria.xhtml" class="btn btn-primary" style="width: 175px;">
-            </p:commandLink>
+            <b:commandLink value="Nueva Categoría" action="AddCategoria.xhtml" class="btn btn-primary btn-sm" style="width: 175px;">
+            </b:commandLink>
             </h:form>
         </div>    
       </div>
@@ -47,6 +47,7 @@
                     print="true"
                     style="width: 75%; margin:0 auto;"
                     responsive="true"
+                    class="table-striped"
                     >
        
         <h:column>
@@ -72,16 +73,15 @@
                 <h:outputText value="Operaciones" />
             </f:facet>
             <center>
-            <b:commandButton value="Update" action="#{categoriaController.editarCategoria(categoria)}" class="btn-success"></b:commandButton>
+            <b:commandButton value="Update" action="#{categoriaController.editarCategoria(categoria)}" class="btn-success btn-sm"></b:commandButton>
                -
-               <b:commandButton value="Delete" action="#{categoriaController.eliminarCategoria(categoria.idCategoria)}" onclick="return confirm('Esta seguro de eliminar esta Categoría?')" class="btn-danger"></b:commandButton>
+            <b:commandButton value="Delete" action="#{categoriaController.eliminarCategoria(categoria.idCategoria)}" onclick="return confirm('Esta seguro de eliminar esta Categoría?')" class="btn-danger btn-sm"></b:commandButton>   
             </center>
         </h:column> 
- 
-       </b:dataTable>     
-        <b:messages />
+       </b:dataTable>
+            <b:messages />
        </h:form>
-        
+
     </ui:define>
 
 </ui:composition>

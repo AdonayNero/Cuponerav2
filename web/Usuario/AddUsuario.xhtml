@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:b="http://bootsfaces.net/ui"
@@ -23,56 +24,72 @@
 
       <!--  Formulario Categoria -->
       <div class="row">
-        <div class="col-lg-8 mb-4">
+        <div class="col-lg-12">
             <h3>Usuario</h3>
             
             <hr></hr>
           
-          <h:form id="contactForm">
+          <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
-                <p:outputLabel for="nombre" value="Nombre:"/>
-                <p:inputText id="nombre" value="#{usuarioController.usuario.nombre}" required="true" requiredMessage="Por favor ingrese un usuario">
-                </p:inputText>
+                <h:outputLabel for="nombre" class="col-lg-2 control-label" value="Nombre:"/>
+                <b:inputText id="nombre" value="#{usuarioController.usuario.nombre}" validatorMessage="Ingrese información veridica" class="form-control" required="true" requiredMessage="Por favor ingrese un usuario">
+                    <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="nombre"></b:message>
+                </b:inputText>
                 
-                <p:outputLabel for="dui" value="DUI:"/>
-                <p:inputText id="dui" value="#{usuarioController.usuario.dui}" required="true" requiredMessage="Por favor ingrese un dui">
-                </p:inputText>
+                <h:outputLabel for="dui" class="col-lg-2 control-label" value="DUI:"/>
+                <b:inputText id="dui" value="#{usuarioController.usuario.dui}" class="form-control"
+                            required="true" required-message="Por favor ingrese un teléfono"
+                            validatorMessage="DUI Incorrecto. Sugerido: 01234567-8" >  
+                <f:validateRegex pattern="[0-9]{8}-[0-9]{1}"/>  
+                    <b:message for="dui"></b:message>
+                </b:inputText>
                 
-                <p:outputLabel for="telefono" value="Teléfono:"/>
-                <p:inputText id="telefono" value="#{usuarioController.usuario.telefono}" required="true" requiredMessage="Por favor ingrese un teléfono">
-                </p:inputText>
+                <h:outputLabel for="telefono" class="col-lg-2 control-label" value="Teléfono:"/>
+                <b:inputText id="telefono" value="#{usuarioController.usuario.telefono}" class="form-control"
+                    required="true" required-message="Por favor ingrese un teléfono"
+                             validatorMessage="Telefono Incorrecto. Sugerido: 2222-2345 " >  
+                <f:validateRegex pattern="^[2|7|6]{1}[0-9]{3}-[0-9]{4}"/>  
+                <b:message for="telefono"></b:message>
+                </b:inputText>
                 
-                <p:outputLabel for="email" value="Email:"/>
-                <p:inputText id="email" value="#{usuarioController.usuario.email}" required="true" requiredMessage="Por favor ingrese un email">
-                </p:inputText>
+                <h:outputLabel for="email" class="col-lg-2 control-label" value="Email:"/>
+                <b:inputText id="email" class="form-control" type="email" value="#{usuarioController.usuario.email}" 
+                             required="true" requiredMessage="Por favor ingrese una email"
+                             validatorMessage="Email Incorrecto. Sugerido: gaby@gmail.com" >
+                    <f:validateRegex pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/>
+                    <b:message for="email"></b:message>
+                </b:inputText>
                 
-                <p:outputLabel for="password" value="Contraseña:"/>
-                <p:password id="password" value="#{usuarioController.usuario.pass}" required="true" requiredMessage="Por favor ingrese una contraseña">
-                </p:password>
+                <h:outputLabel for="password" class="col-lg-2 control-label" value="Contraseña:"/>
+                <b:inputSecret id="password" class="form-control" value="#{usuarioController.usuario.pass}" required="true" requiredMessage="Por favor ingrese una contraseña">
+                </b:inputSecret>
                 
-                <p:outputLabel for="tipoAcceso" value="Tipo de Acceso:"/>
-                <p:selectOneMenu id="tipoAcceso" value="#{usuarioController.usuario.tipoAcceso.idRoles}" style="width:227px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
+                <h:outputLabel for="tipoAcceso" class="col-lg-2 control-label" value="Tipo de Acceso:"/>
+                <b:selectOneMenu id="tipoAcceso" class="form-control" required="true" value="#{usuarioController.usuario.tipoAcceso.idRoles}">
+                    <f:selectItem itemLabel="Select One" />
                     <f:selectItems value="#{rolesController.rolesList}" var="r" itemLabel="#{r.nombre}" itemValue="#{r.idRoles}" />
-                </p:selectOneMenu>
+                </b:selectOneMenu>
                   
-                <p:outputLabel for="direccion" value="Direccion"/>
-                <p:inputTextarea rows="3" cols="50" id="direccion" value="#{usuarioController.usuario.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
+                <h:outputLabel for="direccion" class="col-lg-2 control-label" value="Dirección:"/>
+                <p:inputTextarea rows="3" cols="50" class="form-control" id="direccion" validatorMessage="Ingrese información veridica" value="#{usuarioController.usuario.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
+                     <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="direccion"></b:message>
                 </p:inputTextarea>
                 
               </h:panelGrid>
-        
+        <br/>
               <p:toolbar style="background-color: white; border: none;">
                   <f:facet name="left">
-                      <p:commandButton value="Guardar" action="#{usuarioController.create()}" class="btn-primary">
-              </p:commandButton>
+              <b:commandButton value="Guardar" action="#{usuarioController.create()}" class="btn btn-primary">
+              </b:commandButton>
               </f:facet>
                   
               <f:facet name="right">
-              <p:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+              <b:commandButton value="Restablecer" class="btn btn-danger" style="margin-right:600px;" >
                     <p:ajax update="panel" resetValues="true" />
-              </p:commandButton>
+              </b:commandButton>
               </f:facet>
               </p:toolbar>
           </h:form>

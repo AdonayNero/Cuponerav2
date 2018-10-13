@@ -19,6 +19,9 @@
         </li>
         <li class="breadcrumb-item active">Modificar Venta</li>
       </ol>
+              <li class="breadcrumb" style="width: 87px">
+          <a href="GetVenta.xhtml">Cancelar</a>
+        </li>
 
       <!--  Formulario Categoria -->
       <div class="row">
@@ -27,34 +30,34 @@
             
             <hr></hr>
           
-          <h:form id="contactForm">
+          <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
-                <h:outputLabel for="CodVenta" value="Código Venta:"/>
+                <h:outputLabel for="CodVenta" class="col-lg-2 control-label" value="Código Venta:"/>
                 <b:inputText id="CodVenta" class="form-control" value="#{ventaController.venta.codCupon}" required="true" requiredMessage="Ingrese el código de venta">
                 </b:inputText>  
                   
-                <h:outputLabel for="idCliente" value="Cliente:"/>
+                <h:outputLabel for="idCliente" class="col-lg-2 control-label" value="Cliente:"/>
                 <b:inputText id="idCliente" class="form-control" value="#{ventaController.venta.codCliente}" required="true" requiredMessage="Ingrese el código de cliente">
                 </b:inputText>    
                 
-                <h:outputLabel for="idDetalle" value="Detalle Oferta:"/>
+                <h:outputLabel for="idDetalle" class="col-lg-2 control-label" value="Detalle Oferta:"/>
                 <b:selectOneMenu id="idDetalle" class="form-control" value="#{ventaController.venta.idDetalle.idDetalle}" required="true" requiredMessage="Seleccione una opción" >
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItems value="#{ventaController.detalleofertaList}" var="d" itemLabel="#{d.idDetalle}" itemValue="#{d.idDetalle}" />
                 </b:selectOneMenu>
                   
-                <h:outputLabel for="fechaVenta" value="Fecha Venta:" />
+                <h:outputLabel for="fechaVenta" class="col-lg-2 control-label" value="Fecha Venta:" />
                 <p:calendar id="fechaVenta" value="#{ventaController.venta.fechaVenta}" required="true" requiredMessage="Seleccione una fecha" showOn="button" />
                 
-                <h:outputLabel for="pago" value="Forma de Pago:"/>
+                <h:outputLabel for="pago" class="col-lg-2 control-label" value="Forma de Pago:"/>
                 <b:selectOneMenu id="pago" class="form-control" value="#{ventaController.venta.formaPago}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItem itemLabel="Contado" itemValue="Contado" />
                     <f:selectItem itemLabel="Credito" itemValue="Credito" />
                 </b:selectOneMenu>  
                 
-                <h:outputLabel for="estado" value="Estado:"/>
+                <h:outputLabel for="estado" class="col-lg-2 control-label" value="Estado:"/>
                 <b:selectOneMenu id="estado" class="form-control" value="#{ventaController.venta.estado}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
                     <f:selectItem itemLabel="Activo" itemValue="Activo" />
@@ -65,13 +68,7 @@
         
               <p:toolbar style="background-color: white; border: none;">
               <f:facet name="left">
-              <b:commandButton value="Editar" action="#{ventaController.modificarVenta()}" class="btn-primary">
-              </b:commandButton>
-              </f:facet>
-                  
-              <f:facet name="right">
-              <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
-                    <p:ajax update="panel" resetValues="true" />
+              <b:commandButton value="Guardar Cambios" action="#{ventaController.modificarVenta()}" class="btn btn-primary btn-sm">
               </b:commandButton>
               </f:facet>
               </p:toolbar>

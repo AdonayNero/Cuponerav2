@@ -24,21 +24,24 @@
 
       <!--  Formulario Categoria -->
       <div class="row">
-        <div class="col-lg-8 mb-4">
+        <div class="col-lg-12">
             <h3>Categoría</h3>
             
             <hr></hr>
           
-          <h:form id="contactForm">
+            <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
                   
-                <h:outputLabel for="nombre" value="Nombre:"/>
-                <b:inputText id="nombre" class="form-control" value="#{categoriaController.categoria.nombre}" required="true" requiredMessage="Por favor ingrese una categoría"> 
-                    <f:validateRegex pattern="/^\s+"/>
+                <h:outputLabel for="nombre" class="col-lg-2 control-label" value="Nombre:"/>
+                <b:inputText type="text" id="nombre" class="form-control" value="#{categoriaController.categoria.nombre}" validatorMessage="Ingrese información veridica" required="true" requiredMessage="Por favor ingrese una categoría"> 
+                    <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="nombre"></b:message>
                 </b:inputText>
                 
-                <h:outputLabel for="descripcion" value="Descripción:" />
-                <p:inputTextarea rows="5" cols="50" class="form-control" id="descripcion" value="#{categoriaController.categoria.descripcion}" required="true" requiredMessage="Por favor ingrese una descripción">
+                <h:outputLabel for="descripcion" class="col-lg-2 control-label" value="Descripción:" />
+                <p:inputTextarea rows="5" cols="50" class="form-control" id="descripcion" value="#{categoriaController.categoria.descripcion}" validatorMessage="Ingrese información veridica" required="true" requiredMessage="Por favor ingrese una descripción">
+                    <f:validateRegex pattern="^(?!\s*$).+"/>
+                    <b:message for="descripcion"></b:message>
                 </p:inputTextarea>  
                   
               </h:panelGrid>
@@ -47,12 +50,12 @@
               
               <p:toolbar style="background-color: white; border: none;">
               <f:facet name="left">
-                  <b:commandButton value="Guardar" class="btn-primary" action="#{categoriaController.nuevaCategoria()}">
+                  <b:commandButton value="Guardar" class="btn btn-primary" action="#{categoriaController.nuevaCategoria()}">
                 </b:commandButton>
               </f:facet>
                 
               <f:facet name="right">
-                <b:commandButton value="Restablecer" class="btn-success" style="margin-right:300px;" >
+                <b:commandButton value="Restablecer" class="btn btn-danger" style="margin-right:600px;" >
                     <p:ajax update="panel" resetValues="true" />
                 </b:commandButton>
               </f:facet>
