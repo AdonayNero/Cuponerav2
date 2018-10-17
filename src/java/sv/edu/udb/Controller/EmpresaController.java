@@ -35,6 +35,11 @@ public class EmpresaController {
         return empresaFacade.findAll();
     }
     
+    // Metodo para listar Empresa por Encargado
+    public List<Empresa> getEmpresaListByEnc() {
+        return empresaFacade.empresaByEncargado("US8647");
+    }
+    
     public String create(){
         empresa.setCodEmpresa(this.genCodigo());
         empresa.setEncargado("US8646");

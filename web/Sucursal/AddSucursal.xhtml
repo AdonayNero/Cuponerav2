@@ -35,7 +35,7 @@
                 <h:outputLabel for="idEmpresa" class="col-lg-2 control-label" value="Empresa:"/>
                 <b:selectOneMenu id="idEmpresa" class="form-control" value="#{sucursalController.sucursal.codEmpresa.codEmpresa}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
-                    <f:selectItems value="#{sucursalController.empresaList}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codEmpresa}" />
+                    <f:selectItems value="#{empresaController.empresaListByEnc}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codEmpresa}" />
                 </b:selectOneMenu>  
                   
                 <h:outputLabel for="email" class="col-lg-2 control-label" value="Email:"/>
@@ -53,12 +53,11 @@
                 <f:validateRegex pattern="^[2|7|6]{1}[0-9]{3}-[0-9]{4}"/>   
                 <b:message for="telefono"></b:message>
                 </b:inputText>
-                
-                <h:outputLabel for="dependiente" class="col-lg-2 control-label" value="Dependiente:"/>
-                <b:inputText type="text" class="form-control" id="dependiente" validatorMessage="Ingrese información veridica" value="#{sucursalController.sucursal.dependiente}" required="true" requiredMessage="Por favor ingrese un dependiente">
-                    <f:validateRegex pattern="^(?!\s*$).+"/>
-                    <b:message for="dependiente"></b:message>
-                </b:inputText>
+                <h:outputLabel for="idEncargado" class="col-lg-2 control-label" value="Dependiente:"/>
+                <b:selectOneMenu id="idEncargado" class="form-control" value="#{sucursalController.sucursal.dependiente}" required="true" requiredMessage="Seleccione una opción">
+                    <f:selectItem itemLabel="Select One" />
+                    <f:selectItems value="#{usuarioController.usuarioList}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codUsuario}" />
+                </b:selectOneMenu> 
                   
                 <h:outputLabel for="direccion" class="col-lg-2 control-label" value="Dirección:"/>
                 <p:inputTextarea rows="5" cols="50" class="form-control" validatorMessage="Ingrese información veridica" id="direccion" value="#{sucursalController.sucursal.direccion}" required="true" requiredMessage="Por favor ingrese una dirección">
