@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="./WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+        
+              <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Confirmando Cierre de Sesión
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="../Index.xhtml">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Confirmar Cierre de Sesión</li>
+      </ol>
+
+      <!--  Formulario Oferta -->
+      <div class="row">
+        <div class="col-lg-12">
+            <h:form id="confirmForm" class="form-group">
+            <p:panel id="confirm" header="Confirmación de Cierre de Sesión" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <h:outputText value="¿Está Seguro de Cerrar Sesión #{usuarioController.usuario.nombre}?" style="text-align: center" />
+                    <br />
+                    <br />
+                    <b:commandButton value="Cancelar" action="index.xhtml" />
+                    <b:commandButton value="Cerrar Sesión" action="Login.xhtml" />
+                </h:panelGrid>
+            </p:panel>
+            </h:form>
+        </div>
+      </div>
+            <hr></hr>
+            </ui:define>
+</ui:composition>
