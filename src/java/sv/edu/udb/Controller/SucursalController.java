@@ -38,8 +38,13 @@ public class SucursalController {
     }
     
     // Metodo para listar Sucursal
-    public List<Sucursal> getSucursalList() {;
+    public List<Sucursal> getSucursalList() {
         return sucursalFacade.findAll();
+    }
+    
+    public List<Sucursal> getSucursalListByEnc() {
+        return sucursalFacade.SucursalByEncargado("US8646");
+        //return sucursalFacade.findAll();
     }
     
     // Metodo para listar Empresa

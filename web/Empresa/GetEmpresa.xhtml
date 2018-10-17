@@ -40,7 +40,7 @@
     <br/>
     
     <h:form id="form">  
-        <b:dataTable value="#{empresaController.empresaList}" var="empresa" excel="true"
+        <b:dataTable value="#{empresaController.empresaListByEnc}" var="empresa" excel="true"
                     csv="true"
                     pdf="true"
                     columnVisibility="true"
@@ -51,12 +51,11 @@
                     class="table-striped"
                     >
        
-            <b:dataTableColumn value="#{empresa.codEmpresa}" label="Código" />
+            
             <b:dataTableColumn value="#{empresa.nombre}" label="Nombre" />
             <b:dataTableColumn value="#{empresa.encargado}" label="Encargado" />
             <b:dataTableColumn value="#{empresa.nitEmp}" label="NIT Empresa" />
             <b:dataTableColumn value="#{empresa.porcentaje}" label="Porcentaje(%)" />
-            <b:dataTableColumn value="#{empresa.estado}" label="Estado" />
             <b:dataTableColumn value="#{empresa.observacion}" label="Observaciones" />
             
             <b:dataTableColumn label="Operaciones">

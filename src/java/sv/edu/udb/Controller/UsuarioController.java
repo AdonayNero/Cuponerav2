@@ -34,9 +34,15 @@ public class UsuarioController {
     }
     
      // Metodo para listar Usuario
-    public List<Usuario> getUsuarioList() {;
+    public List<Usuario> getUsuarioList() {
         return usuarioFacade.findAll();
     }
+    
+    public List<Usuario> getUsuarioListEng() {
+        return usuarioFacade.usuarioByEncargado("US8646");
+        //return usuarioFacade.findAll();
+    }
+    
     public String create(){
         String codigo = this.genCodigo();
         usuario.setCodUsuario(codigo);
