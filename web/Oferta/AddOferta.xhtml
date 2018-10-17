@@ -31,8 +31,6 @@
           
           <h:form id="contactForm" class="form-group">
               <h:panelGrid columns="2" cellpadding="5" id="panel">
-                  
-                
                     
                 <h:outputLabel for="titulo" class="col-lg-2 control-label" value="Título:"/>
                 <b:inputText id="titulo" value="#{ofertaController.oferta.titulo}" class="form-control" validatorMessage="Ingrese información veridica" required="true" requiredMessage="Por favor ingrese un título">
@@ -79,19 +77,6 @@
                     <f:validateLongRange minimum="1"/>
                     <b:message for="valorOferta"></b:message>
                 </b:inputText>
-                
-                <h:outputLabel for="estado" class="col-lg-2 control-label" value="Estado:"/>
-                <b:selectOneMenu id="estado" class="form-control" required="true" value="#{ofertaController.oferta.estado}">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="Activo" itemValue="activo" />
-                    <f:selectItem itemLabel="Inactivo" itemValue="inactivo" />
-                </b:selectOneMenu>
-                
-                <h:outputLabel for="observacion" class="col-lg-2 control-label" value="Observación:" />
-                <p:inputTextarea rows="2" cols="50" class="form-control" id="observacion" validatorMessage="Ingrese información veridica" value="#{ofertaController.oferta.observaciones}" required="true" requiredMessage="Por favor ingrese una observación">
-                    <f:validateRegex pattern="^(?!\s*$).+"/>
-                    <b:message for="observacion"></b:message>
-                </p:inputTextarea>  
                   
               </h:panelGrid>
         
