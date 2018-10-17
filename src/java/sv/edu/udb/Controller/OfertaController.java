@@ -36,7 +36,8 @@ public class OfertaController {
     
     //Metodo para nueva oferta
     public String nuevaOferta(){
-        ofertaFacade.create(getOferta());
+        oferta.setCodOferta("US8646"+genToken());
+        ofertaFacade.create(oferta);
         return "GetOferta?faces-redirect=true";
     }
     
@@ -68,6 +69,25 @@ public class OfertaController {
 
     public void setOferta(Oferta oferta) {
         this.oferta = oferta;
+    }
+    
+    public String genToken(){
+        String token = "";
+        int a;
+    for (int i = 0; i < 7; i++) {
+        if (i < 3) {    // 0,1,2,3 posiciones de numeros
+           
+            do {
+                a = (int) (Math.random() * 26 + 65);///
+            } while (a == 65 || a == 69 || a == 73 || a == 79 || a == 85);
+
+            char letra = (char) a;
+           
+                token = token + letra;
+           
+        }
+    }
+    return token;
     }
     
 }
