@@ -56,7 +56,7 @@
                 <h:outputLabel for="idEncargado" class="col-lg-2 control-label" value="Dependiente:"/>
                 <b:selectOneMenu id="idEncargado" class="form-control" value="#{sucursalController.sucursal.dependiente}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One" />
-                    <f:selectItems value="#{usuarioController.usuarioList}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codUsuario}" />
+                    <f:selectItems value="#{usuarioController.usuarioListEng}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codUsuario}" />
                 </b:selectOneMenu> 
                   
                 <h:outputLabel for="direccion" class="col-lg-2 control-label" value="Dirección:"/>
