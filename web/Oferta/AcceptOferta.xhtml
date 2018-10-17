@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="../WEB-INF/Plantilla.xhtml"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+        
+        <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Detalle Oferta
+        <small>Cuponera</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="../Index.xhtml">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Detalle Oferta</li>
+      </ol>
+
+      <!--  Formulario Oferta -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Detalle Oferta</h3>
+            
+            <hr></hr>
+            
+            <h:form>
+                <b:dataTable value="#{ofertaController.ofertaList}" var="oferta" style="width: 75%; margin:0 auto;"
+                             responsive="true" class="table-striped">
+                    <h1 value="#{ofertaController.oferta.titulo}"></h1>
+                    <h3 value="#{ofertaController.oferta.subTitulo}"></h3>
+                    <div>
+                        <b:image value="#{ofertaController.oferta.img}" />
+                        <h:outputText value="#{categoriaController.categoria.nombre}" />
+                        <h:outputText value="Fecha de Expiración: " />
+                        <h:outputText value="#{detalleOfertaController.detalleOferta.fechaFin}" />
+                        <h:outputText value="#{ofertaController.oferta.detalleGenerales}" />
+                        <h:outputText value="#{ofertaController.oferta.descripcion}" />
+                    </div>
+                    <div>
+                        <h:outputText value="#{sucursalController.sucursal.direccion}" />
+                        <h:outputText value="#{sucursalController.sucursal.email}" />
+                        <h:outputText value="#{sucursalController.sucursal.telefono}" />
+                    </div>
+                    <div>
+                        <h:outputText value="#{ofertaController.oferta.valorRegular}" style="color: green"/>
+                        <h:outputText value="#{ofertaController.oferta.valorOferta}" style="color: red" />
+                        
+                        <b:commandButton value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton>
+                        
+                        <h:outputText value="Cantidad de Cupones a Adquirir" />
+                        <p:inputNumber id="cantidad" class="form-control" validatorMessage="Ingrese valores numéricos positivos" 
+                            required="true" requiredMessage="Ingrese un valor">
+                            <f:validateRegex pattern="^\d|[a-zA-Z]"/>
+                            <b:message for="cantidad"></b:message>
+                        </p:inputNumber>
+                    </div>
+                        
+                    </div>
+                </b:dataTable>
+            </h:form>
+    </ui:define>
+</ui:composition>
