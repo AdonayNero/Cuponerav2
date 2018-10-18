@@ -39,14 +39,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         query.setParameter("pass", user.getPass());
         
         user = new Usuario();
-        user = (Usuario) query.getSingleResult();
-        
-        if (user != null) {
-            return user;
+        for (Object users : query.getResultList()) {
+            user = (Usuario) users;
+            return (Usuario) user;
         }
-        user = null;
-        return user;
-        
+        return null;
     }
     
 }

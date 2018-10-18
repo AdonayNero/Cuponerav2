@@ -35,9 +35,9 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3 hidden-xs">
                     <ui:insert name="sidebar">
-                        <b:panel look="success" title="Sidebar">
+                        <b:panel look="success" title="Sidebar" >
                             <div class="list-group">
-                                <b:navLink outcome="Categoria/GetCategoria.xhtml" class="list-group-item">Listar Categorías</b:navLink>
+                                <b:navLink binding="#{login.prueba}"  outcome="Categoria/GetCategoria.xhtml" class="list-group-item">Listar Categorías</b:navLink>
                                 <b:navLink outcome="DetalleOferta/GetDetalleOferta.xhtml" class="list-group-item">Listar DetalleOfertas</b:navLink>
                                 <b:navLink outcome="Empresa/GetEmpresa.xhtml" iconAwesome="building" iconAlign="right" class="list-group-item">Listar Empresa</b:navLink>
                                 <b:navLink outcome="Oferta/GetOferta.xhtml" class="list-group-item">Listar Ofertas</b:navLink>
