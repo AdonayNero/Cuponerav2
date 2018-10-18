@@ -23,45 +23,53 @@
 
       <!--  Formulario Oferta -->
       <div class="row">
-        <div class="col-lg-8 mb-4">
-            <h3>Detalle Oferta</h3>
+
+            <h3></h3>
             
             <hr></hr>
             
             <h:form>
-                <b:dataTable value="#{ofertaController.ofertaList}" var="oferta" style="width: 75%; margin:0 auto;"
-                             responsive="true" class="table-striped">
-                    <h1 value="#{ofertaController.oferta.titulo}"></h1>
-                    <h3 value="#{ofertaController.oferta.subTitulo}"></h3>
-                    <div>
-                        <b:image value="#{ofertaController.oferta.img}" />
-                        <h:outputText value="#{categoriaController.categoria.nombre}" />
-                        <h:outputText value="Fecha de Expiración: " />
-                        <h:outputText value="#{detalleOfertaController.detalleOferta.fechaFin}" />
-                        <h:outputText value="#{ofertaController.oferta.detalleGenerales}" />
-                        <h:outputText value="#{ofertaController.oferta.descripcion}" />
-                    </div>
-                    <div>
-                        <h:outputText value="#{sucursalController.sucursal.direccion}" />
-                        <h:outputText value="#{sucursalController.sucursal.email}" />
-                        <h:outputText value="#{sucursalController.sucursal.telefono}" />
-                    </div>
-                    <div>
-                        <h:outputText value="#{ofertaController.oferta.valorRegular}" style="color: green"/>
-                        <h:outputText value="#{ofertaController.oferta.valorOferta}" style="color: red" />
+  
+                <div style="position: relative;">
+                        <h1>Ejemplo para el Titulo</h1>
+                        <h3>Ejemplo para el Sub-Titulo</h3>
+                        <b:image value="http://krispypizza.com/wp-content/uploads/2016/11/9M6A0198-600x600.jpg" width="400" height="200" /><br />
+                        <h4>Categoría: </h4><h:outputText value="Restaurantes" /><br />
+                        <h4>Fecha de Expiración: </h4><h:outputText value="31-10-2018" /><br />
+                        <h4>Detalles</h4><h:outputText value="Oferta mientras duren existencias. Aprovecha este mes de octubre, todas nuestras pizzas gigantes a tan solo $9.99"/><br />
+                        <h4>Descripción: </h4><h:outputText value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" /><br />
+                        <div class="topright" style="position: absolute; top: 22px; right: 22px;" >
+                        <h4>Precio Regular: <h:outputText value="$14.99" style="color: green"/></h4><br />
+                        <h4>Precio Oferta: <h:outputText value="$9.99" style="color: red" /></h4><br />
                         
-                        <b:commandButton value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton>
+                        <b:commandButton size="lg" value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton><br />
                         
-                        <h:outputText value="Cantidad de Cupones a Adquirir" />
-                        <p:inputNumber id="cantidad" class="form-control" validatorMessage="Ingrese valores numéricos positivos" 
+                        <h4>Cantidad de Cupones a Adquirir</h4>
+                        <p:inputNumber id="cantidad" class="" validatorMessage="Ingrese valores numéricos positivos" 
                             required="true" requiredMessage="Ingrese un valor">
                             <f:validateRegex pattern="^\d|[a-zA-Z]"/>
                             <b:message for="cantidad"></b:message>
                         </p:inputNumber>
                     </div>
-                        
                     </div>
-                </b:dataTable>
+                    <br />
+                    <br />
+                    <div>
+                        <h4>Ubicacion: </h4><h:outputText value="Centro Comercial Plaza Futura 1er Nivel, Locales 2-3, San Salvador, El Salvador" /><br />
+                        <h4>Correo Electrónico: </h4><h:outputText value="promociones@krispys.com.sv" /><br />
+                        <h4>Teléfono(s):</h4><h:outputText value="2267-1219 / 2242-1291 / 7129-3249" /><br />
+                    </div>
+                    <br />
+                    <br />
+                    
+                    <br />
+                    <br />
+                        
             </h:form>
+ 
+      </div>
     </ui:define>
 </ui:composition>

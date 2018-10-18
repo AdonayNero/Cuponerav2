@@ -35,14 +35,14 @@
                 <h:outputLabel for="idSucursal" class="col-lg-2 control-label" value="Sucursal:"/>
                 <b:selectOneMenu id="idSucursal" class="form-control" value="#{detalleOfertaController.detalleOferta.idSucusal.idSucursal}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One"/>
-                    <f:selectItems value="#{detalleOfertaController.sucursalList}" var="s" itemLabel="#{s.direccion}" itemValue="#{s.idSucursal}" />
+                    <f:selectItems value="#{sucursalController.sucursalListByEnc}" var="s" itemLabel="#{s.direccion}" itemValue="#{s.idSucursal}" />
                 </b:selectOneMenu>  
                 
                 
                 <h:outputLabel for="idOferta" class="col-lg-2 control-label" value="Oferta:"/>
                 <b:selectOneMenu id="idOferta" class="form-control" value="#{detalleOfertaController.detalleOferta.codOferta.codOferta}" required="true" requiredMessage="Seleccione una opción">
                     <f:selectItem itemLabel="Select One"/>
-                    <f:selectItems value="#{detalleOfertaController.ofertaList}" var="o" itemLabel="#{o.titulo}" itemValue="#{o.codOferta}" />
+                    <f:selectItems value="#{ofertaController.ofertaByEnc}" var="o" itemLabel="#{o.titulo}" itemValue="#{o.codOferta}" />
                 </b:selectOneMenu>
                 
                 <h:outputLabel for="idCategoria" class="col-lg-2 control-label" value="Categoría:"/>

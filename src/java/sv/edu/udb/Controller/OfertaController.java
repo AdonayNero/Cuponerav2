@@ -34,9 +34,15 @@ public class OfertaController {
         return ofertaFacade.findAll();
     }
     
+    public List<Oferta> getOfertaByEnc() {
+        return ofertaFacade.ofertaByEnc("US8646");
+    }
+    
     //Metodo para nueva oferta
     public String nuevaOferta(){
         oferta.setCodOferta("US8646"+genToken());
+        oferta.setEstado("");
+        oferta.setObservaciones("");
         ofertaFacade.create(oferta);
         return "GetOferta?faces-redirect=true";
     }

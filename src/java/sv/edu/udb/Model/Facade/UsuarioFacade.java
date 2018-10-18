@@ -33,4 +33,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return query.getResultList();
     }
     
+    public Usuario Login(Usuario user){
+        Query query = em.createQuery("SELECT u FROM Usuario u Where u.email = :email and u.pass = :pass and u.estado = 'activo'");
+        query.setParameter("email", user.getEmail());
+        query.setParameter("pass", user.getPass());
+        
+        user = new Usuario();
+        user = (Usuario) query.getSingleResult();
+        
+        if (user != null) {
+            return user;
+        }
+        user = null;
+        return user;
+        
+    }
+    
 }
