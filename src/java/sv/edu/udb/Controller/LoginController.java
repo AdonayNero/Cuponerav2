@@ -12,12 +12,9 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.component.UICommand;
-import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.w3c.dom.html.HTMLLinkElement;
 import sv.edu.udb.Model.Facade.UsuarioFacade;
 import sv.edu.udb.Model.Usuario;
 
@@ -33,7 +30,7 @@ public class LoginController implements Serializable {
     private UsuarioFacade usuarioFacade;
     
     private Usuario usuario;
-    private UICommand prueba;
+    
     /**
      * Creates a new instance of login
      */
@@ -60,7 +57,7 @@ public class LoginController implements Serializable {
         
         
         this.usuario = resultado;
-        return "ConfirmLogout";
+        return "ConfirmCorreo";
     }
     
     public Usuario getAuthUser(){
@@ -83,6 +80,40 @@ public class LoginController implements Serializable {
         return new Usuario();
     }
     
+    public Usuario getSessionStart(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        
+        
+        Usuario tmp = (Usuario)session.getAttribute("usuario");
+        if(tmp != null){
+            return tmp;
+        }
+        return null;
+    }
+    
+    
+    public void logout(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        
+        session.removeAttribute("usuario");
+        
+        this.usuario = new Usuario();
+        
+        try {
+            context.getExternalContext().redirect(request.getContextPath()+"/faces/login.xhtml");
+        } catch (IOException ex) {
+            try {
+                context.getExternalContext().redirect(request.getContextPath()+"/faces/admin.xhtml");
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex1) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
        
 
     public Usuario getUsuario() {
@@ -93,23 +124,6 @@ public class LoginController implements Serializable {
         this.usuario = usuario;
     }
 
-    public UICommand getPrueba() {
-        return prueba;
-    }
-
-    public void setPrueba(UICommand prueba) {
-        this.prueba = prueba;
-    }
-
-   
-
-    
-
-    
-    
-    
-    
-    
     
     
 }

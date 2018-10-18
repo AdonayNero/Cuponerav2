@@ -19,18 +19,18 @@
         <li class="breadcrumb-item">
           <a href="../Index.xhtml">Inicio</a>
         </li>
-          <li class="breadcrumb-item active">Enviar Correo Electr&oacute;nico de Verificaci&oacute;n</li>
+          <li class="breadcrumb-item active">Envio de Correo Electr&oacute;nico de Verificaci&oacute;n</li>
       </ol>
 
       <!--  Formulario Oferta -->
       <div class="row">
         <div class="col-lg-12">
-            <h3>Enviar Correo Electr&oacute;nico de Verificaci&oacute;n</h3>
+            <h3>Se le Envio un Correo Electr&oacute;nico de Verificaci&oacute;n</h3>
             
             <hr></hr>
             <h:form id="enviarcorreo" class="form-group">
-                <p:panel id="sendmail" header="Enviar Correo Electrónico ">
-                    <h:outputText value="Estimado usuario #{usuarioController.usuario.nombre}, Solo un paso más para confirmar el ingreso de su cuenta,
+                <p:panel id="sendmail" header="Se le Envio un Correo Electrónico ">
+                    <h:outputText value="Estimado usuario #{login.authUser.codUsuario}, Solo un paso más para confirmar el ingreso de su cuenta,
                                   Le pedimos que confirme el envío al correo #{usuarioController.usuario.email} un mensaje de verificación" />
                     <br />
                     <br />

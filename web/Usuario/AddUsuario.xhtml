@@ -7,7 +7,8 @@
     xmlns:b="http://bootsfaces.net/ui"
     xmlns:f="http://java.sun.com/jsf/core"
     template="../WEB-INF/Plantilla.xhtml"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="contenido">
         
               <!-- Page Heading/Breadcrumbs -->
@@ -69,7 +70,17 @@
                 <h:outputLabel for="tipoAcceso" class="col-lg-2 control-label" value="Tipo de Acceso:"/>
                 <b:selectOneMenu id="tipoAcceso" class="form-control" required="true" value="#{usuarioController.usuario.tipoAcceso.idRoles}">
                     <f:selectItem itemLabel="Select One" />
-                    <f:selectItems value="#{rolesController.rolesList}" var="r" itemLabel="#{r.nombre}" itemValue="#{r.idRoles}" />
+                    <c:if test="#{login.sessionStart == null}">
+                    <f:selectItem itemLabel="Cliente" itemValue="2" />
+                    <f:selectItem itemLabel="Empresa" itemValue="4" />
+                    </c:if>
+                    <c:if test="#{login.sessionStart != null}">
+                        
+                        <f:selectItem itemLabel="Dependiente" itemValue="3" />
+                        <c:if test="#{login.authUser.tipoAcceso.idRoles == 1}">
+                            <f:selectItem itemLabel="Administrador" itemValue="1" />
+                        </c:if>
+                    </c:if>
                 </b:selectOneMenu>
                   
                 <h:outputLabel for="direccion" class="col-lg-2 control-label" value="Dirección:"/>

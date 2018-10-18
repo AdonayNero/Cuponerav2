@@ -26,6 +26,7 @@ public class UsuarioController {
     private List<Usuario> usuarioList;
     private Usuario usuario;
     private Roles roles;
+    private LoginController login = new LoginController();
     
     public UsuarioController() {
         usuario = new Usuario();
@@ -39,13 +40,20 @@ public class UsuarioController {
     }
     
     public List<Usuario> getUsuarioListEng() {
-        return usuarioFacade.usuarioByEncargado("US8646");
+       
+        return usuarioFacade.usuarioByEncargado(login.getAuthUser().getCodUsuario());
         //return usuarioFacade.findAll();
     }
     
     public String create(){
         String codigo = this.genCodigo();
-        usuario.setCodUsuario(codigo);
+        if (login.getAuthUser().getTipoAcceso().getIdRoles()==1) {
+           
+            usuario.setCodUsuario(codigo+genCodDep());
+        }else{
+            usuario.setCodUsuario(codigo);
+        }
+        
         usuario.setEstado("inactivo");
         usuario.setToken(this.genToken());
         
@@ -114,6 +122,24 @@ public class UsuarioController {
     return token;
     }
     
+    public String genCodDep(){
+        String token = "";
+        int a;
+    for (int i = 0; i < 7; i++) {
+        if (i < 3) {    // 0,1,2,3 posiciones de numeros
+           
+            do {
+                a = (int) (Math.random() * 26 + 65);///
+            } while (a == 65 || a == 69 || a == 73 || a == 79 || a == 85);
+
+            char letra = (char) a;
+           
+                token = token + letra;
+           
+        }
+    }
+    return login.getAuthUser().getCodUsuario()+token;
+    }
     
     
     

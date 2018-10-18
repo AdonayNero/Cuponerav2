@@ -25,6 +25,7 @@ public class EmpresaController {
     private List<Empresa> empresaList;
     
     private Empresa empresa;
+    private LoginController login = new LoginController();
                
     public EmpresaController() {
         empresa = new Empresa();
@@ -37,12 +38,12 @@ public class EmpresaController {
     
     // Metodo para listar Empresa por Encargado
     public List<Empresa> getEmpresaListByEnc() {
-        return empresaFacade.empresaByEncargado("US8647");
+        return empresaFacade.empresaByEncargado(login.getAuthUser().getCodUsuario());
     }
     
     public String create(){
         empresa.setCodEmpresa(this.genCodigo());
-        empresa.setEncargado("US8646");
+        empresa.setEncargado(login.getAuthUser().getCodUsuario());
         empresa.setEstado(" ");
         empresa.setPorcentaje("5");
         empresaFacade.create(empresa);
