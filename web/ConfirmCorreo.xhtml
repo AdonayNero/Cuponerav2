@@ -11,33 +11,34 @@
     <ui:define name="contenido">
         
               <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Confirmando Cierre de Sesión
-        <small>Cuponera</small>
+      <h1 class="mt-4 mb-3">
+        <small>Enviar Correo Electr&oacute;nico de Verificaci&oacute;n</small>
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="../Index.xhtml">Inicio</a>
         </li>
-        <li class="breadcrumb-item active">Confirmar Cierre de Sesión</li>
+          <li class="breadcrumb-item active">Enviar Correo Electr&oacute;nico de Verificaci&oacute;n</li>
       </ol>
 
       <!--  Formulario Oferta -->
       <div class="row">
         <div class="col-lg-12">
-            <h:form id="confirmForm" class="form-group">
-            <p:panel id="confirm" header="Confirmación de Cierre de Sesión" style="margin-bottom:20px">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <h:outputText value="¿Está Seguro de Cerrar Sesión #{usuarioController.usuario.nombre}?" style="text-align: center" />
+            <h3>Enviar Correo Electr&oacute;nico de Verificaci&oacute;n</h3>
+            
+            <hr></hr>
+            <h:form id="enviarcorreo" class="form-group">
+                <p:panel id="sendmail" header="Enviar Correo Electrónico ">
+                    <h:outputText value="Estimado usuario #{usuarioController.usuario.nombre}, Solo un paso más para confirmar el ingreso de su cuenta,
+                                  Le pedimos que confirme el envío al correo #{usuarioController.usuario.email} un mensaje de verificación" />
                     <br />
                     <br />
-                    <b:commandButton value="Cancelar" action="Index.xhtml" />
-                    <b:commandButton value="Cerrar Sesión" action="Login.xhtml" look="primary"/>
-                </h:panelGrid>
-            </p:panel>
+                    <b:commandButton look="success" value="Enviar Correo de Verificación" />
+                </p:panel>
             </h:form>
         </div>
       </div>
-            <hr></hr>
             </ui:define>
 </ui:composition>
+
