@@ -93,6 +93,23 @@ public class LoginController implements Serializable {
         return null;
     }
     
+    public void security(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        
+        
+        Usuario tmp = (Usuario)session.getAttribute("usuario");
+        if(tmp.getTipoAcceso().getIdRoles()== 2){
+            try {
+                context.getExternalContext().redirect(request.getContextPath()+"/faces/Index.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
     
     public void logout(){
         FacesContext context = FacesContext.getCurrentInstance();

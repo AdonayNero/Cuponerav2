@@ -36,6 +36,7 @@
                         
                         <c:if test="#{login.sessionStart !=null}">
                             <h:form>
+                                <h:outputText value="#{login.authUser.nombre}"/>
                             <b:commandButton action="#{login.logout()}">
                                 Cerrar Sesion
                             </b:commandButton>                            

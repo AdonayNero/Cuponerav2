@@ -47,6 +47,10 @@ public class VentaController {
         return ventaFacade.findAll();
     }
     
+    public List<Venta> getVentaListByUsr() {;
+        return ventaFacade.ventaByUsr(login.getAuthUser().getCodUsuario());
+    }
+    
     
     
     // Metodo para listar DetalleOferta

@@ -7,7 +7,8 @@
     xmlns:b="http://bootsfaces.net/ui"
     xmlns:f="http://java.sun.com/jsf/core"
     template="../WEB-INF/Plantilla.xhtml"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="contenido">
               <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">Venta
@@ -38,7 +39,8 @@
     
     <br/>
     
-    <h:form id="form">  
+    <h:form id="form"> 
+        <c:if test="#{login.authUser.tipoAcceso.idRoles != 2}">
         <b:dataTable value="#{ventaController.ventaList}" var="venta" excel="true"
                     csv="true"
                     pdf="true"
@@ -70,8 +72,44 @@
                 <b:commandButton value="Delete" action="#{ventaController.eliminarVenta(venta.codCupon)}" onclick="return confirm('Esta seguro de querer eliminar esta Venta?')" class="btn-danger btn-sm"></b:commandButton>
                 </center>
             </b:dataTableColumn>
+            </b:dataTable>     
+            </c:if>
+        <c:if test="#{login.authUser.tipoAcceso.idRoles == 2}">
+            <b:dataTable value="#{ventaController.ventaListByUsr}" var="venta" excel="true"
+                    csv="true"
+                    pdf="true"
+                    columnVisibility="true"
+                    copy="true"
+                    print="true"
+                    style="width: 100%; margin:0 auto;"
+                      responsive="true"
+                    class="table-striped"
+                    >
+       
+            <b:dataTableColumn value="#{venta.codCupon}" label="Código" />
+            <b:dataTableColumn value="#{venta.codCliente}" label="Cliente" />
+            <b:dataTableColumn value="#{venta.idDetalle.idDetalle}" label="Detalle Oferta" />
+             <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Fecha_Fin" />
+                </f:facet>
+                <h:outputText value="#{venta.fechaVenta}">
+                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                </h:outputText>
+            </h:column>
+            <b:dataTableColumn value="#{venta.formaPago}" label="Forma de Pago" />
+            <b:dataTableColumn value="#{venta.estado}" label="Estado" />
+            <b:dataTableColumn label="Operaciones">
+                <center>
+                
+                <br/><br/>
+                <b:commandButton value="Delete" action="#{ventaController.eliminarVenta(venta.codCupon)}" onclick="return confirm('Esta seguro de querer eliminar esta Venta?')" class="btn-danger btn-sm"></b:commandButton>
+                </center>
+            </b:dataTableColumn>
+            </b:dataTable>     
+            </c:if>
             
-       </b:dataTable>     
+       
         <b:messages/>
             </h:form>
     

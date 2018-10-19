@@ -36,7 +36,7 @@
                     <h3>#{detalleOfertaController.detalleOferta.codOferta.subTitulo}</h3>
                         <b:image value="http://krispypizza.com/wp-content/uploads/2016/11/9M6A0198-600x600.jpg" width="400" height="200" /><br />
                         <h4>Categoría: </h4><h:outputText value="#{detalleOfertaController.detalleOferta.idCategoria.nombre}" /><br />
-                        <h4>Fecha de Expiración: </h4><h:outputText value="#{detalleOfertaController.detalleOferta.fechaFin}" /><br />
+                        <h4>Fecha de Expiración: </h4><h:outputText value="#{detalleOfertaController.detalleOferta.fechaFin}" > <f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText><br />
                         
                         <h4>Descripción: </h4><h:outputText value="#{detalleOfertaController.detalleOferta.codOferta.descripcion}"/><br />
                         <div class="topright" style="position: absolute; top: 22px; right: 22px;" >

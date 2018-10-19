@@ -7,12 +7,17 @@
     xmlns:b="http://bootsfaces.net/ui"
     xmlns:f="http://java.sun.com/jsf/core"
     template="../WEB-INF/Plantilla.xhtml"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="contenido">
         
     <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">Nuevo Detalle Oferta
         <small>Cuponera</small>
+        <p>
+            
+            #{login.security()}
+        </p>
       </h1>
 
       <ol class="breadcrumb">
