@@ -48,7 +48,7 @@ public class UsuarioController {
     public String create(){
         String codigo = this.genCodigo();
         if (login.getSessionStart() != null) {
-            usuario.setCodUsuario(codigo+genCodDep());
+            usuario.setCodUsuario(genCodDep());
         }else{
             usuario.setCodUsuario(codigo);
         }

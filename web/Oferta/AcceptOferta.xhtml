@@ -44,25 +44,32 @@
                             <h4>Detalles</h4><h:outputText value="#{detalleOfertaController.detalleOferta.codOferta.detalleGenerales}"/><br />
                             <h4>Precio Regular: <h:outputText value="#{detalleOfertaController.detalleOferta.codOferta.valorRegular}" style="color: green"/></h4><br />
                             <h4>Precio Oferta: <h:outputText value="#{detalleOfertaController.detalleOferta.codOferta.valorOferta}" style="color: red" /></h4><br />
-                        <h:form>
-                        <b:commandButton size="lg" value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton><br />
-                        <c:set var = "id" scope = "session" value = "${detalleOfertaController.detalleOferta.idDetalle}"/>
-                        
-                        <h4>Cantidad de Cupones a Adquirir</h4>
-                        
-                        <b:selectOneMenu id="estado" class="form-control" value="#{ventaController.venta.idDetalle.idDetalle}" required="true" requiredMessage="Seleccione una opción">
-                            <f:selectItems value="#{ventaController.getDetalleofertaList(id)}" var="d" itemLabel="#{d.idDetalle}" itemValue="#{d.idDetalle}" />
-                        </b:selectOneMenu>                    
-                        
-                            
-                        <b:inputText id="cantidad" class="form-control" value="#{ventaController.cant}" 
-                             required="true" requiredMessage="Por favor ingrese una cantidad"
-                             validatorMessage="La cantidad debe ser mayor a 0"
-                             converterMessage="La cantidad debe ser numerico">
-                            <f:validateLongRange minimum="1"/>
-                            <b:message for="cantidad"></b:message>
-                        </b:inputText>
-                        </h:form>
+                            <c:if test="#{login.sessionStart != null}"> 
+                                    
+                                <h:form>
+                                <b:commandButton size="lg" value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton><br />
+                                <c:set var = "id" scope = "session" value = "${detalleOfertaController.detalleOferta.idDetalle}"/>
+
+                                <h4>Cantidad de Cupones a Adquirir</h4>
+
+                                <b:selectOneMenu id="estado" class="form-control" value="#{ventaController.venta.idDetalle.idDetalle}" required="true" requiredMessage="Seleccione una opción">
+                                    <f:selectItems value="#{detalleOfertaController.detalleofertaList}" var="d" itemLabel="#{d.codOferta.titulo}" itemValue="#{d.idDetalle}" />
+                                </b:selectOneMenu>                    
+
+
+                                <b:inputText id="cantidad" class="form-control" value="#{ventaController.cant}" 
+                                     required="true" requiredMessage="Por favor ingrese una cantidad"
+                                     validatorMessage="La cantidad debe ser mayor a 0"
+                                     converterMessage="La cantidad debe ser numerico">
+                                    <f:validateLongRange minimum="1"/>
+                                    <b:message for="cantidad"></b:message>
+                                </b:inputText>
+                                </h:form>
+                            </c:if>
+                            <c:if test="#{login.sessionStart == null}">
+                                <p>Para poder Comprar necesita loguearse </p>
+                                
+                            </c:if>
                     </div>
                     </div>
                     <br />
