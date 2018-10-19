@@ -30,6 +30,9 @@ public class VentaController {
     private List<Venta> ventaList;
     
     private Venta venta;
+    private int cant;
+    private int deO;
+    
     private Detalleoferta detalle;
     private LoginController login = new LoginController();
     
@@ -44,19 +47,26 @@ public class VentaController {
         return ventaFacade.findAll();
     }
     
+    
+    
     // Metodo para listar DetalleOferta
-    public List<Detalleoferta> getDetalleofertaList(){
-        return detalleFacade.findAll();
+    public List<Detalleoferta> getDetalleofertaList(int d){
+        return detalleFacade.listbyId(d);
     }
     
     // Metodo para nueva Venta
     public String nuevaVenta(){
-        
-        venta.setFechaVenta(new Date());
-        venta.setCodCliente(login.getAuthUser().getCodUsuario());
-        ventaFacade.create(venta);
-        venta = new Venta();
-        return "GetVenta?faces-redirect=true";
+            
+            
+            
+            venta.setCodCupon(login.getAuthUser().getCodUsuario()+genToken());
+            venta.setFechaVenta(new Date());
+            venta.setCodCliente(login.getAuthUser().getCodUsuario());
+ 
+            venta.setFormaPago("cdsv");
+            venta.setEstado("activo");
+            ventaFacade.create(venta);
+            return "/Venta/GetVenta?faces-redirect=true";
     }
     
     //Metodo que obtiene los valores de Venta para luego poder modificar
@@ -90,5 +100,48 @@ public class VentaController {
     public void setVenta(Venta venta) {
         this.venta = venta;
     }
+
+    public int getCant() {
+        return cant;
+    }
+
+    public void setCant(int cant) {
+        this.cant = cant;
+    }
+
+    public int getDeO() {
+        return deO;
+    }
+
+    public void setDeO(int deO) {
+        this.deO = deO;
+    }
+    
+    
+    public String genToken(){
+        String token = "";
+        int a;
+    for (int i = 0; i < 7; i++) {
+        if (i < 4) {    // 0,1,2,3 posiciones de numeros
+            token = (int) (Math.random() * 5) + "" + token;
+
+        } else {       // 4,5,6 posiciones de letras
+            do {
+                a = (int) (Math.random() * 26 + 65);///
+            } while (a == 65 || a == 69 || a == 73 || a == 79 || a == 85);
+
+            char letra = (char) a;
+            if (i == 4) {
+                token = token + letra;
+            } else {
+                token = token + "" + letra;
+            }
+
+        }
+    }
+    return token;
+    }
+    
+    
    
 }

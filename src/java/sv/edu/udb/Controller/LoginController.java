@@ -57,7 +57,7 @@ public class LoginController implements Serializable {
         
         
         this.usuario = resultado;
-        return "ConfirmCorreo";
+        return "Index";
     }
     
     public Usuario getAuthUser(){
@@ -72,7 +72,7 @@ public class LoginController implements Serializable {
         }
         
         try {
-            context.getExternalContext().redirect(request.getContextPath()+"/faces/login.xhtml");
+            context.getExternalContext().redirect(request.getContextPath()+"/faces/Login.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,10 +104,10 @@ public class LoginController implements Serializable {
         this.usuario = new Usuario();
         
         try {
-            context.getExternalContext().redirect(request.getContextPath()+"/faces/login.xhtml");
+            context.getExternalContext().redirect(request.getContextPath()+"/faces/Index.xhtml");
         } catch (IOException ex) {
             try {
-                context.getExternalContext().redirect(request.getContextPath()+"/faces/admin.xhtml");
+                context.getExternalContext().redirect(request.getContextPath()+"/faces/Index.xhtml");
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex1) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex1);

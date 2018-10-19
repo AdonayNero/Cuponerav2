@@ -47,8 +47,7 @@ public class UsuarioController {
     
     public String create(){
         String codigo = this.genCodigo();
-        if (login.getAuthUser().getTipoAcceso().getIdRoles()==1) {
-           
+        if (login.getSessionStart() != null) {
             usuario.setCodUsuario(codigo+genCodDep());
         }else{
             usuario.setCodUsuario(codigo);
@@ -61,7 +60,7 @@ public class UsuarioController {
         usuario = new Usuario();
         roles = new Roles();
         usuario.setTipoAcceso(roles);
-        return "GetUsuario";
+        return "../Index?faces-redirect=true";
     }
     public String findById(Usuario u){
         usuario = usuarioFacade.find(u.getCodUsuario());

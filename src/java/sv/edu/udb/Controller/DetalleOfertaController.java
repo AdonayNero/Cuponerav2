@@ -1,6 +1,7 @@
 
 package sv.edu.udb.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -88,9 +89,16 @@ public class DetalleOfertaController {
         return "UpdateDetalleOferta";
     }
     
+    public List<Detalleoferta> getDetallesOfertas(Detalleoferta d){
+        
+        List<Detalleoferta> lista =new ArrayList<>();
+        lista.add(detalleFacade.find(d.getIdDetalle()));
+        return lista;
+    }
+    
     public String buscarOferta(Detalleoferta d){
         detalleOferta = detalleFacade.find(d.getIdDetalle());
-        return "/Oferta/AcceptOferta?faces-redirect=true";
+        return "/Oferta/AcceptOferta";
     }
     
     // Metodo para modificar Venta

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Cuponera - Frameworks</title>
     </h:head>
@@ -23,32 +24,60 @@
                 <b:navbarLinks pull="right" style="font-size: 15px;" styleClass="hidden-xs">
     
                     <b:dropMenu value="Perfil" iconAwesome="user-circle" >
-                      <b:navLink></b:navLink>
-                      
+                        <c:if test="#{login.sessionStart == null}">
+                        <b:navLink outcome="/Usuario/AddUsuario.xhtml">
+                            Registrar
+                        </b:navLink>
+                            
+                        <b:navLink outcome="Login.xhtml">
+                            Iniciar Sesion
+                        </b:navLink>                            
+                      </c:if>
+                        
+                        <c:if test="#{login.sessionStart !=null}">
+                            <h:form>
+                            <b:commandButton action="#{login.logout()}">
+                                Cerrar Sesion
+                            </b:commandButton>                            
+                            </h:form>
+                        </c:if>
                     </b:dropMenu>
                 </b:navbarLinks>
 
             </b:navBar>
         </ui:insert>
+        
 
         <div class="container">	
             <div class="row">
+                <c:if test="#{login.sessionStart !=null}">
                 <div class="col-md-3 col-sm-3 hidden-xs">
                     <ui:insert name="sidebar">
+                        
                         <b:panel look="success" title="Sidebar" >
                             <div class="list-group">
-                                <b:navLink outcome="Categoria/GetCategoria.xhtml" class="list-group-item">Listar Categorías</b:navLink>
-                                <b:navLink outcome="DetalleOferta/GetDetalleOferta.xhtml" class="list-group-item">Listar DetalleOfertas</b:navLink>
-                                <b:navLink outcome="Empresa/GetEmpresa.xhtml" iconAwesome="building" iconAlign="right" class="list-group-item">Listar Empresa</b:navLink>
-                                <b:navLink outcome="Oferta/GetOferta.xhtml" class="list-group-item">Listar Ofertas</b:navLink>
-                                <b:navLink outcome="Rol/GetRol.xhtml" class="list-group-item">Listar Roles</b:navLink>
-                                <b:navLink outcome="Sucursal/GetSucursal.xhtml" class="list-group-item">Listar Sucursales</b:navLink>
-                                <b:navLink outcome="Usuario/GetUsuario.xhtml" iconAwesome="users" iconAlign="right" class="list-group-item">Listar Usuarios</b:navLink>
-                                <b:navLink outcome="Venta/GetVenta.xhtml" class="list-group-item">Listar Ventas</b:navLink>
+                                
+                                <b:navLink outcome="/Venta/GetVenta.xhtml" class="list-group-item">Listar Cupones</b:navLink>
+                                <b:navLink outcome="/Usuario/GetUsuario.xhtml" iconAwesome="users" iconAlign="right" class="list-group-item">Usuario</b:navLink>
+                                <c:if test="#{login.authUser.tipoAcceso.idRoles == 1 or login.authUser.tipoAcceso.idRoles == 4}">
+                                    
+                                    <b:navLink outcome="/Empresa/GetEmpresa.xhtml" iconAwesome="building" iconAlign="right" class="list-group-item">Listar Empresa</b:navLink>
+                                    <b:navLink outcome="/DetalleOferta/GetDetalleOferta.xhtml" class="list-group-item">Listar DetalleOfertas</b:navLink>
+                                    <b:navLink outcome="/Oferta/GetOferta.xhtml" class="list-group-item">Listar Ofertas</b:navLink>
+                                    <b:navLink outcome="/Sucursal/GetSucursal.xhtml" class="list-group-item">Listar Sucursales</b:navLink>
+                                    <c:if test="#{login.authUser.tipoAcceso.idRoles ==1}">        
+                                        <b:navLink outcome="/Categoria/GetCategoria.xhtml" class="list-group-item">Listar Categorías</b:navLink>
+                                        <b:navLink outcome="/Rol/GetRol.xhtml" class="list-group-item">Listar Roles</b:navLink>
+                                    </c:if>
+                                </c:if>
+                                
+                                
+                                
                             </div>
                         </b:panel>
                     </ui:insert>
                 </div>
+                </c:if>
 
                 <div class="col-md-9 col-sm-9" >
                     <ui:insert name="contenido" >
