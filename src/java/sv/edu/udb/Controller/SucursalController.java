@@ -30,6 +30,7 @@ public class SucursalController {
     
     private Sucursal sucursal;
     private Empresa empresa;
+    private LoginController login = new LoginController();
     
     public SucursalController() {
         sucursal = new Sucursal();
@@ -43,7 +44,7 @@ public class SucursalController {
     }
     
     public List<Sucursal> getSucursalListByEnc() {
-        return sucursalFacade.SucursalByEncargado("US8646");
+        return sucursalFacade.SucursalByEncargado(login.getAuthUser().getCodUsuario());
         //return sucursalFacade.findAll();
     }
     
@@ -55,7 +56,7 @@ public class SucursalController {
     // Metodo para nueva Sucursal
     public String nuevaSucursal(){
         sucursalFacade.create(getSucursal());
-        return "GetSucursal?faces-redirect=true";
+        return "/Oferta/AddOferta?faces-redirect=true";
     }
     
     //Metodo que obtiene los valores de Sucursal para luego poder modificar

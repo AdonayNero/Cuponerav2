@@ -1,6 +1,7 @@
 
 package sv.edu.udb.Controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -30,6 +31,7 @@ public class VentaController {
     
     private Venta venta;
     private Detalleoferta detalle;
+    private LoginController login = new LoginController();
     
     public VentaController() {
         venta = new Venta();
@@ -49,7 +51,11 @@ public class VentaController {
     
     // Metodo para nueva Venta
     public String nuevaVenta(){
-        ventaFacade.create(getVenta());
+        
+        venta.setFechaVenta(new Date());
+        venta.setCodCliente(login.getAuthUser().getCodUsuario());
+        ventaFacade.create(venta);
+        venta = new Venta();
         return "GetVenta?faces-redirect=true";
     }
     

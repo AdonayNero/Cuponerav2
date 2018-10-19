@@ -24,6 +24,7 @@ public class OfertaController {
     private List<Oferta> ofertaList;
     
     private Oferta oferta;
+    private LoginController login = new LoginController();
     
     public OfertaController() {
         oferta = new Oferta();
@@ -35,16 +36,16 @@ public class OfertaController {
     }
     
     public List<Oferta> getOfertaByEnc() {
-        return ofertaFacade.ofertaByEnc("US8646");
+        return ofertaFacade.ofertaByEnc(login.getAuthUser().getCodUsuario());
     }
     
     //Metodo para nueva oferta
     public String nuevaOferta(){
-        oferta.setCodOferta("US8646"+genToken());
+        oferta.setCodOferta(login.getAuthUser().getCodUsuario()+genToken());
         oferta.setEstado("");
         oferta.setObservaciones("");
         ofertaFacade.create(oferta);
-        return "GetOferta?faces-redirect=true";
+        return "/DetalleOferta/AddDetalleOferta?faces-redirect=true";
     }
     
     //Metodo que obtiene los valores de Oferta para luego poder modificar

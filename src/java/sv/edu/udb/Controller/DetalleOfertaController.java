@@ -88,6 +88,11 @@ public class DetalleOfertaController {
         return "UpdateDetalleOferta";
     }
     
+    public String buscarOferta(Detalleoferta d){
+        detalleOferta = d;
+        return "../Oferta/AcceptOferta?faces-redirect=true";
+    }
+    
     // Metodo para modificar Venta
     public String modificarDetalleOferta(){
         detalleFacade.edit(detalleOferta);

@@ -1,13 +1,18 @@
 
 package sv.edu.udb.Controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import org.jboss.weld.logging.Category;
 import sv.edu.udb.Model.Empresa;
 import sv.edu.udb.Model.Facade.EmpresaFacade;
 
@@ -42,13 +47,21 @@ public class EmpresaController {
     }
     
     public String create(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         empresa.setCodEmpresa(this.genCodigo());
         empresa.setEncargado(login.getAuthUser().getCodUsuario());
         empresa.setEstado(" ");
         empresa.setPorcentaje("5");
         empresaFacade.create(empresa);
         empresa = new Empresa();
-        return "GetEmpresa";
+        
+        try {
+            context.getExternalContext().redirect(request.getContextPath()+"/faces/Sucursal/AddSucursal.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return request.getContextPath()+"/faces/Sucursal/AddSucursal";
     }
     
     public void delete(Empresa e){
