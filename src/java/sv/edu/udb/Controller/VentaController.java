@@ -1,6 +1,7 @@
 
 package sv.edu.udb.Controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -44,11 +45,17 @@ public class VentaController {
     
      // Metodo para listar Venta
     public List<Venta> getVentaList() {;
-        return ventaFacade.findAll();
+        ventaList = new ArrayList<>();
+        ventaList = ventaFacade.ventaByEmp(login.getAuthUser().getCodUsuario());
+        return ventaList;
     }
     
     public List<Venta> getVentaListByUsr() {;
-        return ventaFacade.ventaByUsr(login.getAuthUser().getCodUsuario());
+        ventaList = null;
+        ventaList = new ArrayList<>();
+        
+        ventaList = ventaFacade.ventaByUsr(login.getAuthUser().getCodUsuario()); 
+        return ventaList;
     }
     
     
@@ -60,13 +67,9 @@ public class VentaController {
     
     // Metodo para nueva Venta
     public String nuevaVenta(){
-            
-            
-            
-            venta.setCodCupon(login.getAuthUser().getCodUsuario()+genToken());
+            venta.setCodCupon(login.getAuthUser().getCodUsuario()+codeCupon());
             venta.setFechaVenta(new Date());
             venta.setCodCliente(login.getAuthUser().getCodUsuario());
- 
             venta.setFormaPago("cdsv");
             venta.setEstado("activo");
             ventaFacade.create(venta);
@@ -122,7 +125,7 @@ public class VentaController {
     }
     
     
-    public String genToken(){
+    public String codeCupon(){
         String token = "";
         int a;
     for (int i = 0; i < 7; i++) {

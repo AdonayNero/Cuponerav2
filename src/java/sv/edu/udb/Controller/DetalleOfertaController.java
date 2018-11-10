@@ -2,6 +2,7 @@
 package sv.edu.udb.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -14,8 +15,10 @@ import sv.edu.udb.Model.Facade.CategoriaFacade;
 import sv.edu.udb.Model.Facade.DetalleofertaFacade;
 import sv.edu.udb.Model.Facade.OfertaFacade;
 import sv.edu.udb.Model.Facade.SucursalFacade;
+import sv.edu.udb.Model.Facade.VentaFacade;
 import sv.edu.udb.Model.Oferta;
 import sv.edu.udb.Model.Sucursal;
+import sv.edu.udb.Model.Venta;
 
 /**
  *
@@ -37,24 +40,31 @@ public class DetalleOfertaController {
     @EJB
     CategoriaFacade categoriaFacade;
     
+    @EJB
+    VentaFacade ventaFacade;
+    
     private List<Detalleoferta> detalleList;
-    
     private Detalleoferta detalleOferta;
-    
     private Sucursal sucursal;
-    
     private Oferta oferta;
-    
     private Categoria categoria;
+    private Venta venta;
+    private LoginController login = new LoginController();
+    
+    private int cant;
     
     public DetalleOfertaController() {
+        cant = 1;
         detalleOferta = new Detalleoferta();
         sucursal = new Sucursal();
         oferta = new Oferta();
         categoria = new Categoria();
         detalleOferta.setIdSucusal(sucursal);
         detalleOferta.setCodOferta(oferta);
-        detalleOferta.setIdCategoria(categoria);   
+        detalleOferta.setIdCategoria(categoria);
+        venta = new Venta();
+        venta.setIdDetalle(detalleOferta);
+        
     }
     
     // Metodo para listar DetalleOferta
@@ -98,6 +108,7 @@ public class DetalleOfertaController {
     
     public String buscarOferta(Detalleoferta d){
         detalleOferta = detalleFacade.find(d.getIdDetalle());
+        
         return "/Oferta/AcceptOferta";
     }
     
@@ -118,6 +129,20 @@ public class DetalleOfertaController {
         FacesContext.getCurrentInstance().addMessage(null,message);
     }
     
+    public String nuevaVenta(){
+            for (int i = 0; i < cant; i++) {
+                detalleOferta = detalleFacade.find(detalleOferta.getIdDetalle());
+                venta.setIdDetalle(detalleOferta);
+                venta.setCodCupon(detalleOferta.getIdSucusal().getCodEmpresa().getEncargado()+codeCupon());
+                venta.setFechaVenta(new Date());
+                venta.setCodCliente(login.getAuthUser().getCodUsuario());
+                venta.setFormaPago("credito");
+                venta.setEstado("Activo");
+                ventaFacade.create(venta);
+             }
+            return "../Venta/GetVenta?faces-redirect=true";
+    }
+    
     // Setter & Getter
     public Detalleoferta getDetalleOferta() {
         return detalleOferta;
@@ -125,6 +150,49 @@ public class DetalleOfertaController {
 
     public void setDetalleOferta(Detalleoferta detalleOferta) {
         this.detalleOferta = detalleOferta;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public int getCant() {
+        return cant;
+    }
+
+    public void setCant(int cant) {
+        this.cant = cant;
+    }
+    
+    
+    
+    
+     public String codeCupon(){
+        String token = "";
+        int a;
+    for (int i = 0; i < 7; i++) {
+        if (i < 4) {    // 0,1,2,3 posiciones de numeros
+            token = (int) (Math.random() * 5) + "" + token;
+
+        } else {       // 4,5,6 posiciones de letras
+            do {
+                a = (int) (Math.random() * 26 + 65);///
+            } while (a == 65 || a == 69 || a == 73 || a == 79 || a == 85);
+
+            char letra = (char) a;
+            if (i == 4) {
+                token = token + letra;
+            } else {
+                token = token + "" + letra;
+            }
+
+        }
+    }
+    return token;
     }
     
 

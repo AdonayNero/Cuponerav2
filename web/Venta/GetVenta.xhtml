@@ -88,7 +88,7 @@
        
             <b:dataTableColumn value="#{venta.codCupon}" label="Código" />
             <b:dataTableColumn value="#{venta.codCliente}" label="Cliente" />
-            <b:dataTableColumn value="#{venta.idDetalle.idDetalle}" label="Detalle Oferta" />
+            <b:dataTableColumn value="#{venta.idDetalle.codOferta.titulo}" label="Detalle Oferta" />
              <h:column>
                 <f:facet name="header">
                     <h:outputText value="Fecha_Fin" />

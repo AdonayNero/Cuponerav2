@@ -1,6 +1,7 @@
 
 package sv.edu.udb.Model.Facade;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,9 +29,21 @@ public class VentaFacade extends AbstractFacade<Venta> {
     }
     
     public List<Venta> ventaByUsr(String cod){
+        List<Venta> venta = new ArrayList<>();
         Query query = em.createQuery("SELECT v FROM Venta v WHERE v.codCliente = :codC");
         query.setParameter("codC", cod);
-        return query.getResultList();
+        venta = null;
+        venta = query.getResultList();
+        return venta;
+    }
+    
+    public List<Venta> ventaByEmp(String cod){
+        List<Venta> venta = new ArrayList<>();
+        Query query = em.createQuery("SELECT v FROM Venta v WHERE v.codCupon = :codC");
+        query.setParameter("codC", cod+"%");
+        venta = null;
+        venta = query.getResultList();
+        return venta;
     }
     
 }

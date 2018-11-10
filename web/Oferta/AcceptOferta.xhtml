@@ -47,23 +47,20 @@
                             <c:if test="#{login.sessionStart != null}"> 
                                     
                                 <h:form>
-                                <b:commandButton size="lg" value="Comprar" action="#{ventaController.nuevaVenta()}" look="danger"></b:commandButton><br />
-                                <c:set var = "id" scope = "session" value = "${detalleOfertaController.detalleOferta.idDetalle}"/>
+                                    
+                                
 
                                 <h4>Cantidad de Cupones a Adquirir</h4>
 
-                                <b:selectOneMenu id="estado" class="form-control" value="#{ventaController.venta.idDetalle.idDetalle}" required="true" requiredMessage="Seleccione una opción">
-                                    <f:selectItems value="#{detalleOfertaController.detalleofertaList}" var="d" itemLabel="#{d.codOferta.titulo}" itemValue="#{d.idDetalle}" />
-                                </b:selectOneMenu>                    
-
-
-                                <b:inputText id="cantidad" class="form-control" value="#{ventaController.cant}" 
+                                <b:inputText id="cantidad" class="form-control" value="#{detalleOfertaController.cant}" 
                                      required="true" requiredMessage="Por favor ingrese una cantidad"
                                      validatorMessage="La cantidad debe ser mayor a 0"
                                      converterMessage="La cantidad debe ser numerico">
                                     <f:validateLongRange minimum="1"/>
                                     <b:message for="cantidad"></b:message>
                                 </b:inputText>
+                                <h:inputHidden value="${detalleOfertaController.detalleOferta.idDetalle}"/>
+                                <b:commandButton size="lg" value="Comprar" action="#{detalleOfertaController.nuevaVenta()}" onclick="return confirm('Esta seguro de comprar estos cupones?')" look="danger"></b:commandButton><br/>
                                 </h:form>
                             </c:if>
                             <c:if test="#{login.sessionStart == null}">
