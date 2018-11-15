@@ -69,7 +69,8 @@ public class DetalleOfertaController {
     
     // Metodo para listar DetalleOferta
     public List<Detalleoferta> getDetalleofertaList() {
-        return detalleFacade.findAll();
+        detalleFacade.cambiarEstado();
+        return detalleFacade.listbyEstado();
     }
     
     // Metodo para listar Sucursal
@@ -89,6 +90,7 @@ public class DetalleOfertaController {
     
     // Metodo para nuevo DetalleOferta
     public String nuevoDetalleOferta(){
+        detalleOferta.setVenta(detalleOferta.getCantidad());
         detalleFacade.create(getDetalleOferta());
         return "GetDetalleOferta?faces-redirect=true";
     }
@@ -131,16 +133,23 @@ public class DetalleOfertaController {
     
     public String nuevaVenta(){
             for (int i = 0; i < cant; i++) {
-                detalleOferta = detalleFacade.find(detalleOferta.getIdDetalle());
+                detalleOferta = detalleFacade.find(detalleOferta.getIdDetalle());                
                 venta.setIdDetalle(detalleOferta);
                 venta.setCodCupon(detalleOferta.getIdSucusal().getCodEmpresa().getEncargado()+codeCupon());
                 venta.setFechaVenta(new Date());
                 venta.setCodCliente(login.getAuthUser().getCodUsuario());
                 venta.setFormaPago("credito");
                 venta.setEstado("Activo");
-                ventaFacade.create(venta);
+                
+                ventaFacade.create(venta);                
+                detalleOferta.setVenta(detalleOferta.getVenta()-1);
+                System.out.println(detalleOferta.getVenta());
+                detalleFacade.vendidos( detalleOferta.getVenta(),detalleOferta.getIdDetalle());                
+                if (detalleOferta.getVenta()==0) {
+                    return "../Index.html";
+                }
              }
-            return "../Venta/GetVenta?faces-redirect=true";
+            return "../Index.html";
     }
     
     // Setter & Getter

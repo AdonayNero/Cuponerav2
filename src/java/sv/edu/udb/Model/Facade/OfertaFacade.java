@@ -32,5 +32,10 @@ public class OfertaFacade extends AbstractFacade<Oferta> {
         query.setParameter("codigo", cod+"%");
         return query.getResultList();
     }
+    public List<Oferta> ofertaByEstado(){
+        Query query = em.createQuery("SELECT o FROM Oferta o WHERE o.estado = :estado");
+        query.setParameter("estado", "activo");
+        return query.getResultList();
+    }
     
 }

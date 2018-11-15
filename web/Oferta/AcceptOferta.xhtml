@@ -48,7 +48,7 @@
                                     
                                 <h:form>
                                     
-                                
+                                    <h3 style="font-weight: bold; color: red;">Cantidad de cupones disponible #{detalleOfertaController.detalleOferta.venta}</h3>
 
                                 <h4>Cantidad de Cupones a Adquirir</h4>
 
@@ -59,8 +59,9 @@
                                     <f:validateLongRange minimum="1"/>
                                     <b:message for="cantidad"></b:message>
                                 </b:inputText>
-                                <h:inputHidden value="${detalleOfertaController.detalleOferta.idDetalle}"/>
+                                <h:inputHidden value="${detalleOfertaController.detalleOferta.idDetalle}"/>                                
                                 <b:commandButton size="lg" value="Comprar" action="#{detalleOfertaController.nuevaVenta()}" onclick="return confirm('Esta seguro de comprar estos cupones?')" look="danger"></b:commandButton><br/>
+                                
                                 </h:form>
                             </c:if>
                             <c:if test="#{login.sessionStart == null}">

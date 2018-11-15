@@ -42,7 +42,7 @@ public class OfertaController {
     //Metodo para nueva oferta
     public String nuevaOferta(){
         oferta.setCodOferta(login.getAuthUser().getCodUsuario()+genToken());
-        oferta.setEstado("");
+        oferta.setEstado("inactivo");
         oferta.setObservaciones("");
         ofertaFacade.create(oferta);
         return "/DetalleOferta/AddDetalleOferta?faces-redirect=true";

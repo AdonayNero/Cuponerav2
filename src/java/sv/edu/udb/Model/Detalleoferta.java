@@ -64,6 +64,10 @@ public class Detalleoferta implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
+    
+    @Basic(optional = false)
+    @Column(name = "venta")
+    private int venta;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDetalle")
     private Collection<Venta> ventaCollection;
@@ -87,12 +91,13 @@ public class Detalleoferta implements Serializable {
         this.idDetalle = idDetalle;
     }
 
-    public Detalleoferta(Integer idDetalle, int cantidad, Date fechaInicio, Date fechaFin, String estado) {
+    public Detalleoferta(Integer idDetalle, int cantidad, Date fechaInicio, Date fechaFin, String estado, int venta) {
         this.idDetalle = idDetalle;
         this.cantidad = cantidad;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.estado = estado;
+        this.venta = venta;
     }
 
     public Integer getIdDetalle() {
@@ -167,6 +172,16 @@ public class Detalleoferta implements Serializable {
     public void setIdSucusal(Sucursal idSucusal) {
         this.idSucusal = idSucusal;
     }
+
+    public int getVenta() {
+        return venta;
+    }
+
+    public void setVenta(int venta) {
+        this.venta = venta;
+    }
+    
+    
 
     @Override
     public int hashCode() {

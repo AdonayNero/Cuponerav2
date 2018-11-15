@@ -39,7 +39,7 @@ public class VentaFacade extends AbstractFacade<Venta> {
     
     public List<Venta> ventaByEmp(String cod){
         List<Venta> venta = new ArrayList<>();
-        Query query = em.createQuery("SELECT v FROM Venta v WHERE v.codCupon = :codC");
+        Query query = em.createQuery("SELECT v FROM Venta v WHERE v.codCupon LIKE :codC");
         query.setParameter("codC", cod+"%");
         venta = null;
         venta = query.getResultList();
