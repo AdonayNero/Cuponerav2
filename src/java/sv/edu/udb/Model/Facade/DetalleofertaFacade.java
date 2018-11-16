@@ -34,6 +34,12 @@ public class DetalleofertaFacade extends AbstractFacade<Detalleoferta> {
         return query.getResultList();
     }
     
+    public List<Detalleoferta> listbySearch(String cod){
+        Query query = em.createQuery("SELECT d FROM Detalleoferta d, d.idSucusal s, d.codOferta o, d.idCategoria c where s.direccion like :cod or o.titulo like :cod or o.valorOferta like :cod or c.nombre like :cod");
+        query.setParameter("cod", "%"+cod+"%");
+        return query.getResultList();
+    }
+    
     public List<Detalleoferta> listbyEstado(){
         Query query = em.createQuery("SELECT d FROM Detalleoferta d where d.estado = 'activo'");
         return query.getResultList();

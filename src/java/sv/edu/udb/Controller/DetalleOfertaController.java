@@ -52,6 +52,7 @@ public class DetalleOfertaController {
     private LoginController login = new LoginController();
     
     private int count;
+    private String searchOferta;
     
     private int cant;
     
@@ -143,6 +144,7 @@ public class DetalleOfertaController {
         FacesContext.getCurrentInstance().addMessage(null,message);
     }
     
+    //metodo para compra de cupones
     public String nuevaVenta(){
             for (int i = 0; i < cant; i++) {
                 detalleOferta = detalleFacade.find(detalleOferta.getIdDetalle());                
@@ -162,6 +164,16 @@ public class DetalleOfertaController {
                 }
              }
             return "../Index.html";
+    }
+    
+    //metodo para buscador
+    public String redirigir(){
+        this.searchOferta = searchOferta;
+        return "Search";
+    }
+    public List<Detalleoferta> getSearch() {
+        
+        return detalleFacade.listbySearch(searchOferta);
     }
     
     public void countOferta(){
@@ -207,6 +219,15 @@ public class DetalleOfertaController {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public String getSearchOferta() {
+        return searchOferta;
+    }
+
+    public void setSearchOferta(String searchOferta) {
+        this.searchOferta = searchOferta;
+    }
+   
     
         
      public String codeCupon(){

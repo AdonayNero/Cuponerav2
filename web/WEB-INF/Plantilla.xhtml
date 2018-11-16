@@ -12,13 +12,10 @@
         <ui:insert name="menu">
             <b:navBar brand="CUPONERA" brandHref="Index.xhtml" inverse="true" >
                 <b:navbarLinks style="font-size: 15px;" styleClass="hidden-xs">
-                    <b:navLink value="Agregar Entrada"></b:navLink>
-                    <b:navLink value="Ver entradas"></b:navLink>
-                    <b:dropMenu value="Menú desplegable">
-                        <b:navLink value="UDB" href="http://www.udb.edu.sv"></b:navLink>
-                        <b:navLink value="Java" href="https://www.java.com/es/"></b:navLink>
-                        <b:navLink value="Algo más que agregar" href="#"></b:navLink>
-                    </b:dropMenu>
+                    <h:form>
+                        <h:inputText value="#{detalleOfertaController.searchOferta}"></h:inputText>
+                        <b:commandButton action="#{detalleOfertaController.redirigir()}">Search</b:commandButton>
+                    </h:form>
                 </b:navbarLinks>
                 
                 <b:navbarLinks pull="right" style="font-size: 15px;" styleClass="hidden-xs">
