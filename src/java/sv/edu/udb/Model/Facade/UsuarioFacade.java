@@ -45,5 +45,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         }
         return null;
     }
+    //para validar el token
+    public void confirmarUsuario(String cod){
+        Query query = em.createQuery("UPDATE Usuario u  SET u.estado = \"activo\" WHERE u.token = :token");
+        query.setParameter("token", cod);
+        query.executeUpdate();
+    }
     
 }

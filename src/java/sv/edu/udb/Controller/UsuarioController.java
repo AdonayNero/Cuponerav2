@@ -2,16 +2,20 @@
 package sv.edu.udb.Controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import org.apache.taglibs.standard.tag.common.core.ParamSupport;
 import sv.edu.udb.Model.Facade.RolesFacade;
 import sv.edu.udb.Model.Facade.UsuarioFacade;
 import sv.edu.udb.Model.Roles;
 import sv.edu.udb.Model.Usuario;
+import sv.edu.udb.util.Correo;
 
 /**
  *
@@ -57,9 +61,24 @@ public class UsuarioController {
         usuario.setToken(this.genToken());
         
         usuarioFacade.create(usuario);
+        
+        //validacion de correo
+         String cadenaAleatoria = usuario.getToken();
+        
+        
+         Correo correo = new Correo();
+                    //Defino los valores de los atributos del correo
+                    correo.setAsunto("Confirmacion de registro");
+                    correo.setMensaje("Prueba de envio de correo  usando ya el proyecto <html><a href='http://localhost:8080/Cuponerav3/faces/Usuario/okUsuario.xhtml?token="+cadenaAleatoria+"'>Enlace</a></html>");
+                    correo.setDestinatario(usuario.getEmail());
+                    
+                    //Finalmente envio el correo
+                    correo.enviarCorreo();
         usuario = new Usuario();
         roles = new Roles();
         usuario.setTipoAcceso(roles);
+       
+        
         return "../Index?faces-redirect=true";
     }
     public String findById(Usuario u){
@@ -140,6 +159,15 @@ public class UsuarioController {
     return login.getAuthUser().getCodUsuario()+token;
     }
     
-    
+   public String okToken(){
+       FacesContext facesContext = FacesContext.getCurrentInstance();
+       ExternalContext externalContext = facesContext.getExternalContext();
+       
+       Map params = externalContext.getRequestParameterMap();
+       String codigo = (String) params.get("token");
+       usuarioFacade.confirmarUsuario(codigo);
+        return "GetUsuario";
+       
+   }
     
 }
