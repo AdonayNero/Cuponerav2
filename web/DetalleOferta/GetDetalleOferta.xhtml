@@ -7,7 +7,8 @@
     xmlns:b="http://bootsfaces.net/ui"
     xmlns:f="http://java.sun.com/jsf/core"
     template="../WEB-INF/Plantilla.xhtml"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="contenido">
         
       <!-- Page Heading/Breadcrumbs -->
@@ -44,7 +45,7 @@
     <br/>
     
     <h:form id="form">    
-        <b:dataTable value="#{detalleOfertaController.detalleofertaList}" var="detalle" excel="true"
+        <b:dataTable value="#{detalleOfertaController.detallesOfertas}" var="detalle" excel="true"
                     csv="true"
                     pdf="true"
                     columnVisibility="true"
@@ -55,7 +56,7 @@
                     class="table-striped"
                     >
        
-            <b:dataTableColumn value="#{detalle.idDetalle}" label="ID" />
+           
             <b:dataTableColumn value="#{detalle.idSucusal.direccion}" label="Sucursal" />
             <b:dataTableColumn value="#{detalle.codOferta.titulo}" label="Oferta" />
             <b:dataTableColumn value="#{detalle.idCategoria.nombre}" label="Categoría" />
@@ -78,11 +79,18 @@
             </h:column>
             <b:dataTableColumn value="#{detalle.estado}" label="Estado" />
             <b:dataTableColumn label="Operaciones">
+                <c:if test="#{login.authUser.tipoAcceso.idRoles != 1}">
                 <center>
                     <b:commandButton value="Update" action="#{detalleOfertaController.editarDetalleOferta(detalle)}" class="btn-success btn-sm"></b:commandButton>
                 <br/><br/>
                 <b:commandButton value="Delete" action="#{detalleOfertaController.eliminarDetalleOferta(detalle.idDetalle)}" onclick="return confirm('Esta seguro de eliminar este Detalle Oferta?')" class="btn-danger btn-sm"></b:commandButton>
                 </center>
+                </c:if>
+                <c:if test="#{login.authUser.tipoAcceso.idRoles == 1}">
+                    <center>
+                        <b:commandButton value="Activar" action="#{detalleOfertaController.activarOferta(detalle)}" class="btn-success btn-sm"></b:commandButton>
+                    </center>
+                </c:if>
             </b:dataTableColumn>
             
        </b:dataTable>     

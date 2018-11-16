@@ -51,6 +51,8 @@ public class DetalleOfertaController {
     private Venta venta;
     private LoginController login = new LoginController();
     
+    private int count;
+    
     private int cant;
     
     public DetalleOfertaController() {
@@ -69,7 +71,11 @@ public class DetalleOfertaController {
     
     // Metodo para listar DetalleOferta
     public List<Detalleoferta> getDetalleofertaList() {
+        detalleFacade.activarOferta();
         detalleFacade.cambiarEstado();
+//        if (login.getAuthUser().getTipoAcceso().getIdRoles() == 1) {
+//            return detalleFacade.findAll();
+//        }
         return detalleFacade.listbyEstado();
     }
     
@@ -80,6 +86,7 @@ public class DetalleOfertaController {
     
     // Metodo para listar Ofertas
     public List<Oferta> getOfertaList() {
+        
         return ofertaFacade.findAll();
     }
     
@@ -101,11 +108,16 @@ public class DetalleOfertaController {
         return "UpdateDetalleOferta";
     }
     
-    public List<Detalleoferta> getDetallesOfertas(Detalleoferta d){
+    public List<Detalleoferta> getDetallesOfertas(/*Detalleoferta d*/){
         
-        List<Detalleoferta> lista =new ArrayList<>();
-        lista.add(detalleFacade.find(d.getIdDetalle()));
-        return lista;
+//        List<Detalleoferta> lista =new ArrayList<>();
+//        lista.add(detalleFacade.find(d.getIdDetalle()));
+//        return lista;
+        if (login.getAuthUser().getTipoAcceso().getIdRoles() == 1) {
+                    return detalleFacade.findAll();
+                }
+        
+        return detalleFacade.listbyCod(login.getAuthUser().getCodUsuario());
     }
     
     public String buscarOferta(Detalleoferta d){
@@ -152,6 +164,17 @@ public class DetalleOfertaController {
             return "../Index.html";
     }
     
+    public void countOferta(){
+        setCount(detalleFacade.countOfertaRevision()); 
+    }
+    
+    public String activarOferta(Detalleoferta d){
+        detalleFacade.cambiarEstado(d.getIdDetalle());
+        return "GetDetalleOferta?faces-redirect=true";
+    }
+    
+
+    
     // Setter & Getter
     public Detalleoferta getDetalleOferta() {
         return detalleOferta;
@@ -176,10 +199,16 @@ public class DetalleOfertaController {
     public void setCant(int cant) {
         this.cant = cant;
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
     
-    
-    
-    
+        
      public String codeCupon(){
         String token = "";
         int a;

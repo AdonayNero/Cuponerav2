@@ -63,7 +63,7 @@
                                 <c:if test="#{login.authUser.tipoAcceso.idRoles == 1 or login.authUser.tipoAcceso.idRoles == 4}">
                                     
                                     <b:navLink outcome="/Empresa/GetEmpresa.xhtml" iconAwesome="building" iconAlign="right" class="list-group-item">Listar Empresa</b:navLink>
-                                    <b:navLink outcome="/DetalleOferta/GetDetalleOferta.xhtml" class="list-group-item">Listar DetalleOfertas</b:navLink>
+                                    <b:navLink outcome="/DetalleOferta/GetDetalleOferta.xhtml" class="list-group-item">Listar DetalleOfertas <span style="color: red;">#{detalleOfertaController.count}</span></b:navLink>
                                     <b:navLink outcome="/Oferta/GetOferta.xhtml" class="list-group-item">Listar Ofertas</b:navLink>
                                     <b:navLink outcome="/Sucursal/GetSucursal.xhtml" class="list-group-item">Listar Sucursales</b:navLink>
                                     <c:if test="#{login.authUser.tipoAcceso.idRoles ==1}">        

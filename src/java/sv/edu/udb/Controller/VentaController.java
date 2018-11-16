@@ -60,10 +60,10 @@ public class VentaController {
     
     
     
-    // Metodo para listar DetalleOferta
-    public List<Detalleoferta> getDetalleofertaList(int d){
-        return detalleFacade.listbyId(d);
-    }
+//    // Metodo para listar DetalleOferta
+//    public List<Detalleoferta> getDetalleofertaList(int d){
+//        return detalleFacade.listbyId(d);
+//    }
     
     // Metodo para nueva Venta
     public String nuevaVenta(){

@@ -28,9 +28,9 @@ public class DetalleofertaFacade extends AbstractFacade<Detalleoferta> {
         super(Detalleoferta.class);
     }
     
-    public List<Detalleoferta> listbyId(int id){
-        Query query = em.createQuery("SELECT d FROM Detalleoferta d WHERE d.idDetalle = :idDetalle");
-        query.setParameter("idDetalle", id);
+    public List<Detalleoferta> listbyCod(String cod){
+        Query query = em.createQuery("SELECT d FROM Detalleoferta d WHERE d.codOferta like :cod");
+        query.setParameter("cod", cod+"%");
         return query.getResultList();
     }
     
@@ -47,9 +47,28 @@ public class DetalleofertaFacade extends AbstractFacade<Detalleoferta> {
     }
     
     public void cambiarEstado(){
-        Query query = em.createQuery("UPDATE Detalleoferta d  SET d.estado = \"inactivo\" WHERE d.venta = 0 or d.fechaFin < :fecha");
+        Query query = em.createQuery("UPDATE Detalleoferta d  SET d.estado = \"inactivo\" WHERE d.venta = 0 or d.fechaFin < :fecha and d.estado = 'activo'");
         query.setParameter("fecha", new Date());
         query.executeUpdate();
+        
+        
+        
+        
+    }
+    public void activarOferta(){
+        Query query2 = em.createQuery("UPDATE Detalleoferta d  SET d.estado = 'activo' WHERE d.venta > 0 and d.fechaInicio =:fecha and d.estado = 'inactivo'");
+        query2.setParameter("fecha", new Date());
+        query2.executeUpdate();
     }
     
+    public void cambiarEstado(int id){
+        Query query = em.createQuery("UPDATE Detalleoferta d  SET d.estado = \"inactivo\" WHERE d.idDetalle = :id");
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }
+    public int countOfertaRevision(){
+        Query query = em.createQuery("select count(d) from Detalleoferta d where d.estado='revision'");
+        
+        return (int)query.getSingleResult();
+    }
 }
