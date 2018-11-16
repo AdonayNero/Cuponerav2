@@ -57,6 +57,15 @@ public class Sucursal implements Serializable {
     private String direccion;
     
     @Basic(optional = false)
+    @Column(name = "latitud")
+    private double latitud;
+    
+    @Basic(optional = false)
+    @Column(name = "longitud")
+    private double longitud;
+    
+    
+    @Basic(optional = false)
     @Column(name = "dependiente")
     private String dependiente;
     
@@ -74,11 +83,13 @@ public class Sucursal implements Serializable {
         this.idSucursal = idSucursal;
     }
 
-    public Sucursal(Integer idSucursal, String email, String telefono, String direccion, String dependiente) {
+    public Sucursal(Integer idSucursal, String email, String telefono, String direccion, double latitud, double longitud, String dependiente) {
         this.idSucursal = idSucursal;
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.dependiente = dependiente;
+        this.longitud = longitud;
         this.dependiente = dependiente;
     }
 
@@ -113,6 +124,24 @@ public class Sucursal implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+    
+    
 
     public String getDependiente() {
         return dependiente;

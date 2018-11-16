@@ -68,6 +68,23 @@
                     <f:validateRegex pattern="^(?!\s*$).+"/>
                     <b:message for="direccion"></b:message>
                 </p:inputTextarea>
+                 <h:outputLabel for="Coordenadas" class="col-lg-2 control-label" value="Coordenadas:"/>
+                <br /><br />
+                <h:outputLabel for="Latitud" class="col-lg-2 control-label" value="Latitud" />
+                <b:inputText type="text" class="form-control" id="latitud" value="#{sucursalController.sucursal.latitud}" 
+                             required="true" required-message="Por favor ingrese una coordenada de latitud"
+                             validatorMessage="Coordenada Incorrecta. Sugerida: 13.6768701">
+                    <f:validateRegex pattern="^-?[0-9]\d*(\.\d+)?$"/>   
+                    <b:message for="latitud"></b:message>
+                </b:inputText>
+                
+                <h:outputLabel for="longitud" class="col-lg-2 control-label" value="Longitud" />
+                <b:inputText type="text" class="form-control" id="longitud" value="#{sucursalController.sucursal.longitud}"
+                             required="true" required-message="Por favor ingrese una coordenada de longitud"
+                             validatorMessage="Coordenada Incorrecta: Sugerida: -89.2879294">
+                    <f:validateRegex pattern="^-?[0-9]\d*(\.\d+)?$" />
+                    <b:message for="longitud"></b:message>
+                </b:inputText>
                 
               </h:panelGrid>
               

@@ -2,11 +2,16 @@
 package sv.edu.udb.Controller;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import sv.edu.udb.Model.Empresa;
 import sv.edu.udb.Model.Facade.EmpresaFacade;
 import sv.edu.udb.Model.Facade.SucursalFacade;
@@ -31,6 +36,7 @@ public class SucursalController {
     private Sucursal sucursal;
     private Empresa empresa;
     private LoginController login = new LoginController();
+    private MapModel simpleModel;
     
     public SucursalController() {
         sucursal = new Sucursal();
@@ -88,6 +94,23 @@ public class SucursalController {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+    
+    @PostConstruct
+    public void init() {
+        simpleModel = new DefaultMapModel();
+          
+        //Shared coordinates
+        sucursalList = sucursalFacade.findAll();
+        for(Sucursal suc : sucursalList){
+            LatLng coord1 = new LatLng(suc.getLatitud(), suc.getLongitud());
+            simpleModel.addOverlay(new Marker(coord1, suc.getDireccion()));
+        }
+        
+    }
+
+    public MapModel getSimpleModel() {
+        return simpleModel;
     }
     
     
