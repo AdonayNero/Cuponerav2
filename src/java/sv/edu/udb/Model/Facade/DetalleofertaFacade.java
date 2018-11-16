@@ -29,7 +29,7 @@ public class DetalleofertaFacade extends AbstractFacade<Detalleoferta> {
     }
     
     public List<Detalleoferta> listbyCod(String cod){
-        Query query = em.createQuery("SELECT d FROM Detalleoferta d WHERE d.codOferta like :cod");
+        Query query = em.createQuery("SELECT d From Detalleoferta d where d.codOferta.codOferta like :cod");
         query.setParameter("cod", cod+"%");
         return query.getResultList();
     }
